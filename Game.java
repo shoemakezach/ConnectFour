@@ -16,7 +16,12 @@ public class Game {
 		while (!GameOver) {
 			System.out.println("It's Player " + PlayerTurn + "'s turn");
 			PrintArray(board);
-			Turn(PlayerTurn);
+			
+			System.out.println("What column do you want to go in? enter 0-5");  //temp way to get input for turn method
+			Scanner reader = new Scanner(System.in);
+			int input = reader.nextInt();
+			
+			Turn(PlayerTurn,input);
 			GameOver = GameStatus(PlayerTurn);
 			PrintArray(board);
 			ChangeTurn();
@@ -34,10 +39,8 @@ public class Game {
 		System.out.println("New Game Started\n");
 	}
 
-	public void Turn(int player) {
-		System.out.println("What column do you want to go in? enter 0-5");
-		Scanner reader = new Scanner(System.in);
-		int input = reader.nextInt();
+	public void Turn(int player, int input) {
+
 
 		for (int rows = row -1; rows >= 0; rows--)// checks if column is open
 		{
@@ -75,12 +78,10 @@ public class Game {
 	public boolean GameStatus(int player) {
 		for (int r = 0; r < row; r++) {
 			for (int c = 0; c < col; c++) {
-				// board[r][c] is position
 
 				if (board[r][c] == 0)
 					break;
 
-				// PlayerTurn
 
 				// right
 				else if ((c <= col-4) && board[r][c] == PlayerTurn && board[r + 1][c] == PlayerTurn && board[r + 2][c] == PlayerTurn
