@@ -1,5 +1,3 @@
-package ConnectFour;
-
 import java.util.Arrays;
 import java.util.Scanner;
 
@@ -18,11 +16,11 @@ public class Game {
 		while (!GameOver) {
 			System.out.println("It's Player " + PlayerTurn + "'s turn");
 			PrintArray(board);
-
+			
 			System.out.println("What column do you want to go in? enter 0-5");  //temp way to get input for turn method
 			Scanner reader = new Scanner(System.in);
 			int input = reader.nextInt();
-
+			
 			Turn(PlayerTurn,input);
 			GameOver = GameStatus(PlayerTurn);
 			PrintArray(board);
@@ -80,17 +78,18 @@ public class Game {
 	public boolean GameStatus(int player) {
 		for (int r = 0; r < row; r++) {
 			for (int c = 0; c < col; c++) {
-				
+
+
 				// right
-				if ((c <= col-4) && (board[r][c] == PlayerTurn) && (board[r + 1][c] == PlayerTurn) && (board[r + 2][c] == PlayerTurn)
-						&& (board[r + 3][c] == PlayerTurn)) {
+				if ((r <= row-4) && board[r][c] == PlayerTurn && board[r + 1][c] == PlayerTurn && board[r + 2][c] == PlayerTurn
+						&& board[r + 3][c] == PlayerTurn) {
 					System.out.println(PlayerTurn + " Won!");
 
 					return true;
 
 				}
 				// left
-				else if ((c >= 4) && board[r][c] == PlayerTurn && board[r - 1][c] == PlayerTurn && board[r - 2][c] == PlayerTurn
+				else if ((r >= 3) && board[r][c] == PlayerTurn && board[r - 1][c] == PlayerTurn && board[r - 2][c] == PlayerTurn
 						&& board[r - 3][c] == PlayerTurn) {
 
 					System.out.println(PlayerTurn + " Won!");
@@ -99,7 +98,7 @@ public class Game {
 
 				}
 				// up
-				else if ((r <= row-4) && board[r][c] == PlayerTurn && board[r][c + 1] == PlayerTurn && board[r][c + 2] == PlayerTurn
+				else if ((c <= col-4) && board[r][c] == PlayerTurn && board[r][c + 1] == PlayerTurn && board[r][c + 2] == PlayerTurn
 						&& board[r][c + 3] == PlayerTurn) {
 
 					System.out.println(PlayerTurn + " Won!");
@@ -108,7 +107,7 @@ public class Game {
 
 				}
 				// down
-				else if ((r >= 4) && (c <= col-4) && board[r][c] == PlayerTurn && board[r][c - 1] == PlayerTurn && board[r][c - 2] == PlayerTurn
+				else if ((c >= 3) && (r <= row-4) && board[r][c] == PlayerTurn && board[r][c - 1] == PlayerTurn && board[r][c - 2] == PlayerTurn
 						&& board[r][c - 3] == PlayerTurn) {
 
 					System.out.println(PlayerTurn + " Won!");
@@ -117,7 +116,7 @@ public class Game {
 
 				}
 				// up right
-				else if ((r <= row-4) && board[r][c] == PlayerTurn && board[r + 1][c + 1] == PlayerTurn
+				else if ((r <= row-4) &&(c <= col-4) && board[r][c] == PlayerTurn && board[r + 1][c + 1] == PlayerTurn
 						&& board[r + 2][c + 2] == PlayerTurn && board[r + 3][c + 3] == PlayerTurn) {
 					System.out.println(PlayerTurn + " Won!");
 
@@ -125,7 +124,7 @@ public class Game {
 
 				}
 				// up left
-				else if ((r <= row-4) && (c >= 4) && board[r][c] == PlayerTurn && board[r - 1][c + 1] == PlayerTurn
+				else if ((c <= col-4) && (r >= 3) && board[r][c] == PlayerTurn && board[r - 1][c + 1] == PlayerTurn
 						&& board[r - 2][c + 2] == PlayerTurn && board[r - 3][c + 3] == PlayerTurn) {
 
 					System.out.println(PlayerTurn + " Won!");
@@ -133,7 +132,7 @@ public class Game {
 
 				}
 				// down right
-				else if ((r >= 4) && (c <= col-4) && board[r][c] == PlayerTurn && board[r + 1][c - 1] == PlayerTurn
+				else if ((c >= 3) && (r <= row-4) && board[r][c] == PlayerTurn && board[r + 1][c - 1] == PlayerTurn
 						&& board[r + 2][c - 2] == PlayerTurn && board[r + 3][c - 3] == PlayerTurn) {
 					System.out.println(PlayerTurn + " Won!");
 
@@ -141,7 +140,7 @@ public class Game {
 
 				}
 				// down left
-				else if ((r >= 4) && (c >= 4) && board[r][c] == PlayerTurn && board[r - 1][c - 1] == PlayerTurn
+				else if ((c >= 3) && (r >= 3) && board[r][c] == PlayerTurn && board[r - 1][c - 1] == PlayerTurn
 						&& board[r - 2][c - 2] == PlayerTurn && board[r - 3][c - 3] == PlayerTurn) {
 					System.out.println(PlayerTurn + " Won!");
 
