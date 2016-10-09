@@ -4,10 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.Image;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
+import java.awt.event.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -36,11 +33,17 @@ public class conn4Panel extends JPanel {
 	public int tempR;
 	public int tempC;
 	private boolean isClicked;
+	Game game = new Game();
+	
+	private ButtonListener listener = new ButtonListener();
 	
 	public conn4Panel() {
 
+		game = new Game();
+		
 		JPanel bottom = new JPanel();
 		JPanel center = new JPanel();
+		
 
 		isClicked = false;
 		
@@ -54,6 +57,7 @@ public class conn4Panel extends JPanel {
 			for (int col = 0; col < 7; col++) {
 				board[row][col] = new JButton("");
 				center.add(board[row][col]);
+				board[row][col].addActionListener(listener);
 			}
 
 		
@@ -88,14 +92,6 @@ public class conn4Panel extends JPanel {
 		RED = red.getScaledInstance
 				(100, 100, Image.SCALE_DEFAULT);
 		
-		displayBoard();
-
-
-//		add(butReset, BorderLayout.CENTER);
-	}
-
-	
-	private void displayBoard() {
 		Image BLANK = blank.getScaledInstance
 				(100, 100, Image.SCALE_DEFAULT); 
 		for (int r = 0; r < 6 ; r++){
@@ -104,12 +100,46 @@ public class conn4Panel extends JPanel {
 				board[r][c].setPreferredSize(new Dimension
 						(100,100));
 				board[r][c].setIcon(new ImageIcon(BLANK));
-		
-				if(isClicked = true){
-					board[tempR][tempC].setIcon(new ImageIcon(BLACK));
-				
 			}
 		}
+			displayBoard();
+
+
+//		add(butReset, BorderLayout.CENTER);
+	}
+	
+	private void displayBoard() {
+//		Image BLANK = blank.getScaledInstance
+//				(100, 100, Image.SCALE_DEFAULT); 
+//		for (int r = 0; r < 6 ; r++){
+//			for (int c = 0; c < 7; c++) {
+//				board[r][c].setText("");
+//				board[r][c].setPreferredSize(new Dimension
+//						(100,100));
+//				board[r][c].setIcon(new ImageIcon(BLANK));
+//			}
+//		}
+		for (int r = 0; r < 6 ; r++){
+			for (int c = 0; c < 7; c++) {
+				if(game.board[r][c].isRed() == true){
+					board[r][c].setIcon(new ImageIcon(RED));
+					
+//					game.Turn(1,tempC);
+//					game.ChangeTurn();
+//					setClicked(false);
+				}
+				else if(game.board[r][c].isBlack() == true){
+					board[r][c].setIcon(new ImageIcon(BLACK));
+					
+//					game.ChangeTurn();
+//					setClicked(false);
+				}
+				else{
+					board[r][c].setIcon(new ImageIcon(BLANK));
+				}
+			}
+		}
+		
 	}
 	
 
@@ -119,12 +149,22 @@ public class conn4Panel extends JPanel {
 			for (int r = 0; r < 6; r++)
 				for (int c = 0; c < 7; c++)
 					if (board[r][c] == E.getSource()){
-						isClicked = true;
-						tempR = r;
-						tempC = c;
+						System.out.println("Clicked");
+						setClicked(true);
+						//game.Turn(game.GetPlayerTurn(), tempC);
+						game.setPiece(0,c);
+						
 					}
 			
-			displayBoard();	
+			displayBoard();
+			if(game.GameStatus() == true){
+				JOptionPane.showMessageDialog
+				(null, "You Win!"
+						+ "\n The game will reset");
+				game.newGame();
+				displayBoard();
+			}
+			
 
 		}
 
@@ -155,6 +195,10 @@ public class conn4Panel extends JPanel {
 
 		}
 	}
-}
+
+
+	public void setClicked(boolean isClicked) {
+		this.isClicked = isClicked;
+	}
 }
 
