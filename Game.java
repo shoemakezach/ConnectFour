@@ -40,6 +40,14 @@ public class Game {
 	 * 
 	 */
 	private boolean isBlack;
+	/**
+	 * 
+	 */
+	private int blackWin = 0;
+	/**
+	 * 
+	 */
+	private int redWin = 0;
 
 	/**
 	 * 
@@ -171,7 +179,7 @@ public class Game {
 
 
 									System.out.println(playerTurn + " Won!");
-
+									redWin = redWin + 1;
 									return true;
 								}
 							}
@@ -181,14 +189,14 @@ public class Game {
 				//Red Wins Horizontal
 				if (c + THREE < SEVEN) {
 					if (board[r][c].isRed()) {
-						if (board[r][c + 1].isRed()) {
+						if (board[r][c + 1 ].isRed()) {
 							if (board[r][c + 2].isRed()) {
 								if (board[r][c + THREE].isRed()) {
 
 
 
 									System.out.println(playerTurn + " Won!");
-
+									redWin = redWin + 1;
 									return true;
 								}
 							}
@@ -206,7 +214,7 @@ public class Game {
 
 
 									System.out.println(playerTurn + " Won!");
-
+									redWin = redWin + 1;
 									return true;
 								}
 							}
@@ -224,7 +232,7 @@ public class Game {
 
 
 									System.out.println(playerTurn + " Won!");
-
+									redWin = redWin + 1;
 									return true;
 								}
 							}
@@ -241,7 +249,7 @@ public class Game {
 
 
 									System.out.println(playerTurn + " Won!");
-
+									blackWin = blackWin + 1;
 									return true;
 								}
 							}
@@ -258,7 +266,7 @@ public class Game {
 
 
 									System.out.println(playerTurn + " Won!");
-
+									blackWin = blackWin + 1;
 									return true;
 								}
 							}
@@ -276,7 +284,7 @@ public class Game {
 
 
 									System.out.println(playerTurn + " Won!");
-
+									blackWin = blackWin + 1;
 									return true;
 								}
 							}
@@ -294,7 +302,7 @@ public class Game {
 
 
 									System.out.println(playerTurn + " Won!");
-
+									blackWin = blackWin + 1;
 									return true;
 								}
 							}
@@ -354,5 +362,36 @@ public class Game {
 		this.board = b;
 	}
 
+	/**
+	 * Getter for black winning or not. 
+	 * @return returns if black win or not. 
+	 */
+	public final int getBlackWin() {
+		return blackWin;
+	}
+
+	/**
+	 * setter for if black win or not. 
+	 * @param bWin sets winner to black. 
+	 */
+	public final void setBlackWin(final int bWin) {
+		this.blackWin = bWin;
+	}
+
+	/**
+	 * getter for if red win or not. 
+	 * @return returns if red win or not. 
+	 */
+	public final int getRedWin() {
+		return redWin;
+	}
+
+	/**
+	 * setter for the win of red player. 
+	 * @param rWin sets winner to red. 
+	 */
+	public final void setRedWin(final int rWin) {
+		this.redWin = rWin;
+	}
 
 }
