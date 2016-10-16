@@ -1,4 +1,4 @@
-package ConnectFour;
+package connectFour;
 
 import javax.swing.JFrame;
 

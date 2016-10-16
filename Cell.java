@@ -1,4 +1,4 @@
-package ConnectFour;
+package connectFour;
 
 /**
  * 
@@ -24,9 +24,9 @@ public class Cell {
 	 * @param red the cell is red or not.
 	 * @param black the cell is black or not. 
 	 */
-	Cell(boolean red, boolean black) { //CANNOT BE FINAL 
-		red = isRed;
-		black = isBlack;
+	Cell(final boolean red, final boolean black) { //CANNOT BE FINAL 
+		setRed(red);
+		setBlack(black);
 	}
 
 	/**
@@ -43,10 +43,10 @@ public class Cell {
 	 * 
 	 * sets a a piece to red. 
 	 * 
-	 * @param isRed returns true or false for red or not.
+	 * @param isred returns true or false for red or not.
 	 */
-	public final void setRed(final boolean isRed) {
-		this.isRed = isRed;
+	public final void setRed(final boolean isred) {
+		this.isRed = isred;
 	}
 
 	/**
@@ -59,10 +59,10 @@ public class Cell {
 
 	/**
 	 * 
-	 * @param isBlack returns true or false for is black or not.
+	 * @param isblack returns true or false for is black or not.
 	 */
-	public final void setBlack(final boolean isBlack) {
-		this.isBlack = isBlack;
+	public final void setBlack(final boolean isblack) {
+		this.isBlack = isblack;
 	}
 	
 	 

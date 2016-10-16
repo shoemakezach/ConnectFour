@@ -1,4 +1,4 @@
-package ConnectFour;
+package connectFour;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
@@ -19,6 +19,7 @@ import javax.swing.JPanel;
  * @author Zach Shoemake, Zach Hopman, Chris Gonzales 
  *
  */
+@SuppressWarnings("serial")
 public class conn4Panel extends JPanel {
 	/** the cells on the board. */
 	private JButton[][] board;
@@ -37,36 +38,36 @@ public class conn4Panel extends JPanel {
 	/**
 	 * image for the black tile.
 	 */
-	Image black;
+	private Image black;
 	/**
 	 * image for a blank tile. 
 	 */
-	Image blank;
+	private Image blank;
 	/**
 	 * image for a red tile. 
 	 */
-	Image red;
+	private Image red;
 	/**
 	 * image for a black tile. 
 	 */
-	Image BLACK;
+	private Image bLACK;
 	/**
 	 * image for a blank tile. 
 	 */
-	Image BLANK;
+	private Image bLANK;
 	/**
 	 * image for a red tile. 
 	 */
-	Image RED;
+	private Image rED;
 
 	/**
-	 * a temporary integer. 
+	 * a temporary integer for row. 
 	 */
-	public int tempR;
+	private int tempR;
 	/**
-	 * a temporary integer. 
+	 * a temporary integer for column. 
 	 */
-	public int tempC;
+	private int tempC;
 	/**
 	 * 
 	 */
@@ -74,7 +75,7 @@ public class conn4Panel extends JPanel {
 	/**
 	 * set a new game for the player. 
 	 */
-	Game game = new Game();
+	private Game game = new Game();
 
 	//GETTER AND SETTERS FOR THE ABOVE VARIABLES. 
 
@@ -88,10 +89,10 @@ public class conn4Panel extends JPanel {
 	/**
 	 * Clears the board for a new game. 
 	 * 
-	 * @param board parameter to clear the board. 
+	 * @param b parameter to clear the board. 
 	 */
-	public final void setBoard(final JButton[][] board) {
-		this.board = board;
+	public final void setBoard(final JButton[][] b) {
+		this.board = b;
 	}
 	/**
 	 * getter for the black tile image. 
@@ -105,10 +106,10 @@ public class conn4Panel extends JPanel {
 	/**
 	 * sets the image tile to black. 
 	 * 
-	 * @param black the parameter for a black tile. 
+	 * @param b the parameter for a black tile. 
 	 */
-	public final void setBlack(final Image black) {
-		this.black = black;
+	public final void setBlack(final Image b) {
+		this.black = b;
 	}
 
 	/**
@@ -123,10 +124,10 @@ public class conn4Panel extends JPanel {
 	/**
 	 * sets the tile to blank. 
 	 * 
-	 * @param blank
+	 * @param bla parameter for the blank tile. 
 	 */
-	public final void setBlank(final Image blank) {
-		this.blank = blank;
+	public final void setBlank(final Image bla) {
+		this.blank = bla;
 	}
 
 	/**
@@ -141,10 +142,10 @@ public class conn4Panel extends JPanel {
 	/**
 	 * the setter for the red image. 
 	 * 
-	 * @param red the parameter for the red image. 
+	 * @param r the parameter for the red image. 
 	 */
-	public final void setRed(final Image red) {
-		this.red = red;
+	public final void setRed(final Image r) {
+		this.red = r;
 	}
 
 	/**
@@ -153,16 +154,16 @@ public class conn4Panel extends JPanel {
 	 * @return returns the BLACK image. 
 	 */
 	public final Image getBLACK() {
-		return BLACK;
+		return bLACK;
 	}
 
 	/**
 	 * sets the BLACK image. 
 	 * 
-	 * @param bLACK parameter for image. 
+	 * @param b parameter for image. 
 	 */
-	public final void setBLACK(final Image bLACK) {
-		BLACK = bLACK;
+	public final void setBLACK(final Image b) {
+		bLACK = b;
 	}
 
 	/**
@@ -171,16 +172,16 @@ public class conn4Panel extends JPanel {
 	 * @return returns the BLANK image. 
 	 */
 	public final Image getBLANK() {
-		return BLANK;
+		return bLANK;
 	}
 
 	/**
 	 * Setter for the BLANK image. 
 	 * 
-	 * @param bLANK image for tile. 
+	 * @param b image for tile. 
 	 */
-	public final void setBLANK(final Image bLANK) {
-		BLANK = bLANK;
+	public final void setBLANK(final Image b) {
+		bLANK = b;
 	}
 
 	/**
@@ -189,16 +190,16 @@ public class conn4Panel extends JPanel {
 	 * @return returns the RED image. 
 	 */
 	public final Image getRED() {
-		return RED;
+		return rED;
 	}
 
 	/**
 	 * setter for the red image. 
 	 * 
-	 * @param rED parameter for the red image time. 
+	 * @param r parameter for the red image time. 
 	 */
-	public final void setRED(final Image rED) {
-		RED = rED;
+	public final void setRED(final Image r) {
+		rED = r;
 	}
 
 	/**
@@ -213,10 +214,10 @@ public class conn4Panel extends JPanel {
 	/**
 	 * Setter for the temporary row. 
 	 * 
-	 * @param tempR parameter for the integer of row tile. 
+	 * @param temp parameter for the integer of row tile. 
 	 */
-	public final void setTempR(final int tempR) {
-		this.tempR = tempR;
+	public final void setTempR(final int temp) {
+		this.tempR = temp;
 	}
 
 	/**
@@ -231,10 +232,10 @@ public class conn4Panel extends JPanel {
 	/**
 	 * setter for the temporary column. 
 	 * 
-	 * @param tempC parameter for the temporary column. 
+	 * @param temp parameter for the temporary column. 
 	 */
-	public final void setTempC(final int tempC) {
-		this.tempC = tempC;
+	public final void setTempC(final int temp) {
+		this.tempC = temp;
 	}
 	/**
 	 * Getter for the game. 
@@ -247,10 +248,10 @@ public class conn4Panel extends JPanel {
 	/**
 	 * Setter for the game. 
 	 * 
-	 * @param game parameter sets the game. 
+	 * @param g parameter sets the game. 
 	 */
-	public final void setGame(final Game game) {
-		this.game = game;
+	public final void setGame(final Game g) {
+		this.game = g;
 	}
 
 
@@ -307,26 +308,25 @@ public class conn4Panel extends JPanel {
 			black = ImageIO.read(input2);
 			File input3 = new File("/Users/Zach/Documents/pics/Red.png");
 			red = ImageIO.read(input3);
-		}
-		catch (IOException e) {
+		} catch (IOException e) {
 			System.out.println("ERROR");
 		}
 
-		BLANK = blank.getScaledInstance(MAX_IMAGE_SIZE, MAX_IMAGE_SIZE, 
+		bLANK = blank.getScaledInstance(MAX_IMAGE_SIZE, MAX_IMAGE_SIZE, 
 				Image.SCALE_DEFAULT); 
-		BLACK = black.getScaledInstance(MAX_IMAGE_SIZE, MAX_IMAGE_SIZE, 
+		bLACK = black.getScaledInstance(MAX_IMAGE_SIZE, MAX_IMAGE_SIZE, 
 				Image.SCALE_DEFAULT);
-		RED = red.getScaledInstance(MAX_IMAGE_SIZE, MAX_IMAGE_SIZE, 
+		rED = red.getScaledInstance(MAX_IMAGE_SIZE, MAX_IMAGE_SIZE, 
 				Image.SCALE_DEFAULT);
 
-		Image BLANK = blank.getScaledInstance(MAX_IMAGE_SIZE, MAX_IMAGE_SIZE, 
-				Image.SCALE_DEFAULT); 
+		//Image bLANK = blank.getScaledInstance(MAX_IMAGE_SIZE, MAX_IMAGE_SIZE, 
+		//		Image.SCALE_DEFAULT); 
 		for (int r = 0; r < SIX; r++) {
 			for (int c = 0; c < SEVEN; c++) {
 				board[r][c].setText("");
 				board[r][c].setPreferredSize(new Dimension(
 						MAX_IMAGE_SIZE, MAX_IMAGE_SIZE));
-				board[r][c].setIcon(new ImageIcon(BLANK));
+				board[r][c].setIcon(new ImageIcon(bLANK));
 			}
 		}
 		displayBoard();
@@ -341,17 +341,15 @@ public class conn4Panel extends JPanel {
 	private void displayBoard() {
 		for (int r = 0; r < SIX; r++) {
 			for (int c = 0; c < SEVEN; c++) {
-				if (game.board[r][c].isRed() == true) {
-					board[r][c].setIcon(new ImageIcon(RED));
-				}
-				else if (game.board[r][c].isBlack() == true){
-					board[r][c].setIcon(new ImageIcon(BLACK));
+				if (game.getBoard()[r][c].isRed()) {
+					board[r][c].setIcon(new ImageIcon(rED));
+				} else if (game.getBoard()[r][c].isBlack()) {
+					board[r][c].setIcon(new ImageIcon(bLACK));
 
 					//					game.ChangeTurn();
 					//					setClicked(false);
-				}
-				else {
-					board[r][c].setIcon(new ImageIcon(BLANK));
+				} else {
+					board[r][c].setIcon(new ImageIcon(bLANK));
 				}
 			}
 		}
@@ -366,12 +364,14 @@ public class conn4Panel extends JPanel {
 	class ButtonListener implements ActionListener, 
 	MouseListener {
 		/**
-		 * the action performed method cathces users actions. 
+		 * the action performed method catches users actions. 
+		 * 
+		 * @param e used for which action event the player uses. 
 		 */
-		public void actionPerformed(final ActionEvent E) {
+		public void actionPerformed(final ActionEvent e) {
 			for (int r = 0; r < SIX; r++) {
 				for (int c = 0; c < SEVEN; c++) {
-					if (board[r][c] == E.getSource()) {
+					if (board[r][c] == e.getSource()) {
 						System.out.println("Clicked");
 						setClicked(true);
 						//game.Turn(game.GetPlayerTurn(), tempC);
@@ -382,7 +382,7 @@ public class conn4Panel extends JPanel {
 			}
 
 			displayBoard();
-			if (game.GameStatus() == true){
+			if (game.gameStatus()) {
 				JOptionPane.showMessageDialog(null, "You Win!"
 						+ "\n The game will reset");
 				game.newGame();
@@ -393,28 +393,28 @@ public class conn4Panel extends JPanel {
 		}
 
 		@Override
-		public void mouseClicked(MouseEvent e) {
+		public void mouseClicked(final MouseEvent e) {
 			// TODO Auto-generated method stub
 		}
 
 		@Override
-		public void mousePressed(MouseEvent e) {
+		public void mousePressed(final MouseEvent e) {
 			// TODO Auto-generated method stub
 		}
 
 		@Override
-		public void mouseReleased(MouseEvent e) {
+		public void mouseReleased(final MouseEvent e) {
 			//TODO Auto-generated method stub
 
 		}
 
 		@Override
-		public void mouseEntered(MouseEvent e) {
+		public void mouseEntered(final MouseEvent e) {
 			// TODO Auto-generated method stub
 		}
 
 		@Override
-		public void mouseExited(MouseEvent e) {
+		public void mouseExited(final MouseEvent e) {
 			// TODO Auto-generated method stub
 
 		}
@@ -423,9 +423,9 @@ public class conn4Panel extends JPanel {
 	/**
 	 * Setter for the clicked method. 
 	 * 
-	 * @param isClicked parameter that sets the clicked action. 
+	 * @param clicked parameter that sets the clicked action. 
 	 */
-	public final void setClicked(final boolean isClicked) {
-		this.isClicked = isClicked;
+	public final void setClicked(final boolean clicked) {
+		this.isClicked = clicked;
 	}
 }

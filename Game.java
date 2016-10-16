@@ -1,4 +1,4 @@
-package ConnectFour;
+package connectFour;
 
 /**
  * 
@@ -8,29 +8,30 @@ package ConnectFour;
 public class Game {
 
 	/**
-	 * 
+	 * a certain cell on the board.
 	 */
-	Cell board[][];
+	private Cell[][] board;
+
+	/**
+	 * states who's turn it is. 
+	 */
+	private int playerTurn = 1;
 	/**
 	 * 
 	 */
-	int PlayerTurn = 1;
+	private int row = SIX;
 	/**
 	 * 
 	 */
-	int row = 6;
+	private int col = SEVEN;
 	/**
 	 * 
 	 */
-	int col = 7;
+	//private Boolean gameOver = false;
 	/**
 	 * 
 	 */
-	Boolean GameOver = false;
-	/**
-	 * 
-	 */
-	Boolean validMove = true;
+	//private Boolean validMove = true;
 	/**
 	 * 
 	 */
@@ -96,8 +97,8 @@ public class Game {
 	 * 
 	 * @return returns which players turn it is. 
 	 */
-	public final int GetPlayerTurn(){
-		return PlayerTurn;
+	public final int getPlayerTurn() {
+		return playerTurn;
 	}
 
 	/**
@@ -112,26 +113,23 @@ public class Game {
 		if (board[r][c].isBlack() || board[r][c].isRed()) { //throw error here
 			System.out.println("Error: Stack Full");
 			return; 
-		}
-
-		else if (PlayerTurn == 1) {
+		} else if (playerTurn == 1) {
 			for (int i = r; i < SIX; i++) {
 				if (i == FIVE || board[i + 1][c].isRed() 
 						|| board[i + 1][c].isBlack()) {
 					board[i][c].setRed(true);	
-					ChangeTurn();
-					GameStatus();
+					changeTurn();
+					gameStatus();
 					return;
 				}
 			}
-		}
-		else if (PlayerTurn == 2) {
+		} else if (playerTurn == 2) {
 			for (int i = r; i < SIX; i++) {
 				if (i == FIVE || board[i + 1][c].isRed() 
 						|| board[i + 1][c].isBlack()) {
 					board[i][c].setBlack(true);
-					ChangeTurn();
-					GameStatus();
+					changeTurn();
+					gameStatus();
 					return;
 				}
 			}
@@ -143,14 +141,12 @@ public class Game {
 	 * changes the turn to alternate players.
 	 * 
 	 */
-	public final void ChangeTurn() {
-		if (PlayerTurn == 1) {
-			PlayerTurn = 2;
-		}
-		else if (PlayerTurn == 2) {
-			PlayerTurn = 1;
-		}
-		else {
+	public final void changeTurn() {
+		if (playerTurn == 1) {
+			playerTurn = 2;
+		} else if (playerTurn == 2) {
+			playerTurn = 1;
+		} else {
 			System.out.println("PlayerTurn is out of bounds");
 		}
 	}
@@ -161,7 +157,7 @@ public class Game {
 	 * 
 	 * @return returns the status of the game.
 	 */
-	public final boolean GameStatus() {
+	public final boolean gameStatus() {
 		for (int r = 0; r < row; r++) {
 			for (int c = 0; c < col; c++) {
 
@@ -174,7 +170,7 @@ public class Game {
 
 
 
-									System.out.println(PlayerTurn + " Won!");
+									System.out.println(playerTurn + " Won!");
 
 									return true;
 								}
@@ -191,7 +187,7 @@ public class Game {
 
 
 
-									System.out.println(PlayerTurn + " Won!");
+									System.out.println(playerTurn + " Won!");
 
 									return true;
 								}
@@ -209,7 +205,7 @@ public class Game {
 
 
 
-									System.out.println(PlayerTurn + " Won!");
+									System.out.println(playerTurn + " Won!");
 
 									return true;
 								}
@@ -227,7 +223,7 @@ public class Game {
 
 
 
-									System.out.println(PlayerTurn + " Won!");
+									System.out.println(playerTurn + " Won!");
 
 									return true;
 								}
@@ -244,7 +240,7 @@ public class Game {
 
 
 
-									System.out.println(PlayerTurn + " Won!");
+									System.out.println(playerTurn + " Won!");
 
 									return true;
 								}
@@ -261,7 +257,7 @@ public class Game {
 
 
 
-									System.out.println(PlayerTurn + " Won!");
+									System.out.println(playerTurn + " Won!");
 
 									return true;
 								}
@@ -279,7 +275,7 @@ public class Game {
 
 
 
-									System.out.println(PlayerTurn + " Won!");
+									System.out.println(playerTurn + " Won!");
 
 									return true;
 								}
@@ -297,7 +293,7 @@ public class Game {
 
 
 
-									System.out.println(PlayerTurn + " Won!");
+									System.out.println(playerTurn + " Won!");
 
 									return true;
 								}
@@ -312,278 +308,51 @@ public class Game {
 	}
 
 	/**
+	 * a boolean for whether tile is red or not. 
 	 * 
-	 * @return
+	 * @return returns a true or false for red. 
 	 */
-	public boolean isRed() {
+	public final boolean isRed() {
 		return isRed;
 	}
 	/**
+	 * method for setting a tile to red. 
 	 * 
-	 * @param isRed
+	 * @param isred true or false parameter for red or not. 
 	 */
-	public void setRed(boolean isRed) {
-		this.isRed = isRed;
+	public final void setRed(final boolean isred) {
+		this.isRed = isred;
 	}
 	/**
+	 * a boolean for whether tile is black or not. 
 	 * 
-	 * @return
+	 * @return returns a true or false for black.
 	 */
-	public boolean isBlack() {
+	public final boolean isBlack() {
 		return isBlack;
 	}
 	/**
+	 * method for setting a tile to black. 
 	 * 
-	 * @param isBlack
+	 * @param isblack true or false parameter for black or not. 
 	 */
-	public void setBlack(boolean isBlack) {
-		this.isBlack = isBlack;
+	public final void setblack(final boolean isblack) {
+		this.isBlack = isblack;
+	}
+	/**
+	 * 
+	 * @return returns the board position. 
+	 */
+	public final Cell[][] getBoard() {
+		return board;
+	}
+	/**
+	 * 
+	 * @param b sets the particular cell on the board. 
+	 */
+	public final void setBoard(final Cell[][] b) {
+		this.board = b;
 	}
 
 
 }
-
-
-
-//package ConnectFour;
-//
-//import java.util.Scanner;
-//
-///**
-// * 
-// * @author Zach Shoemake, Zach Hopman, Chris Gonzales
-// *
-// * @version 1
-// */
-//public class Game {
-//
-//	/**
-//	 * 
-//	 */
-//	int row = 7;
-//	/**
-//	 * 
-//	 */
-//	int col = 6;
-//	/**
-//	 * 
-//	 */
-//	private int[][] board = new int[row][col];
-//	/**
-//	 * 
-//	 */
-//	int PlayerTurn = 1;
-//
-//	/**
-//	 * 
-//	 */
-//	Boolean GameOver = false;
-//	/**
-//	 * 
-//	 */
-//	Boolean validMove = true;
-//	
-//	/**
-//	 * 
-//	 */
-//	public static final int THREE = 3;
-//	/**
-//	 * 
-//	 */
-//	public static final int FOUR = 4;
-//
-//	/**
-//	 * 
-//	 * Constructor to create the game board.
-//	 *  
-//	 */
-//	public Game() {
-//
-//		newGame();
-//
-//		while (!GameOver) {
-//			System.out.println("It's Player " + PlayerTurn + "'s turn");
-//			PrintArray(board);
-//
-//			do {
-//				//temp way to get input for turn method
-//				System.out.println("What column do you want to go in? "
-//						+ "enter 0-5"); 
-//				Scanner reader = new Scanner(System.in);
-//				int input = reader.nextInt();
-//
-//				Turn(PlayerTurn, input);
-//
-//			} while(!validMove);
-//
-//			GameOver = GameStatus(PlayerTurn);
-//			PrintArray(board);
-//			ChangeTurn();
-//
-//		}
-//
-//	}
-//
-//	/**
-//	 * 
-//	 */
-//	public final void newGame() {
-//		for (int rows = 0; rows < row; rows++) {
-//			for (int cols = 0; cols < col; cols++) {
-//				board[rows][cols] = 0;
-//			}
-//		}
-//		System.out.println("New Game Started\n");
-//	}
-//
-//	/**
-//	 * 
-//	 * @param player
-//	 * @param input
-//	 */
-//	public final void Turn(int player, int input) {
-//
-//		if ((input > col - 1) || (input < 0)) {
-//			System.out.println("Not a Valid Move");
-//			validMove = false;
-//			return;
-//		}
-//		// checks if column is open
-//		for (int rows = row - 1; rows >= 0; rows--) {
-//			if (board[rows][input] == 0) {
-//				if ((rows == 0) || (board[rows - 1][input] != 0)) {
-//					board[rows][input] = player;
-//					System.out.println("Your Turn is over");
-//					validMove = true;
-//					return;
-//				}
-//			}
-//
-//		}
-//
-//	}
-//
-//	/**
-//	 * 
-//	 * @param array
-//	 */
-//	public final void PrintArray(int[][] array) {
-//		for (int rows = row - 1; rows >= 0; rows--) {
-//			for (int cols = 0; cols < col; cols++) {
-//				System.out.print(array[rows][cols] + "  ");
-//			}
-//			System.out.print("\n");
-//		}
-//	}
-//
-//	/**
-//	 * Method completes each players turn. 
-//	 */
-//	public final void ChangeTurn() {
-//		if (PlayerTurn == 1) {
-//			PlayerTurn = 2;
-//		} else if (PlayerTurn == 2) {
-//			PlayerTurn = 1;
-//		} else {
-//			System.out.println("PlayerTurn is out of bounds");
-//		}
-//	}
-//
-//	/**
-//	 * 
-//	 * @param player
-//	 * @return boolean
-//	 */
-//	public final boolean GameStatus(int player) {
-//		for (int r = 0; r < row; r++) {
-//			for (int c = 0; c < col; c++) {
-//
-//				// up/down
-//				if ((r >= 3) && board[r][c] == PlayerTurn 
-//						&& board[r - 1][c] ==  PlayerTurn 
-//						&& board[r - 2][c] == PlayerTurn 
-//						&& board[r - THREE][c] == PlayerTurn) {
-//
-//					System.out.println(PlayerTurn + " Won!");
-//
-//					return true;
-//
-//					// left/right
-//				} else if ((c <= col - FOUR) && board[r][c] == PlayerTurn 
-//						&& board[r][c + 1] == PlayerTurn 
-//						&& board[r][c + 2] == PlayerTurn
-//						&& board[r][c + THREE] == PlayerTurn) {
-//
-//					System.out.println(PlayerTurn + " Won!");
-//
-//					return true;
-//
-//					// up right/down left
-//				} else if ((r <= row - FOUR) && (c <= col - FOUR) 
-//						&& board[r][c] == PlayerTurn 
-//						&& board[r + 1][c + 1] == PlayerTurn
-//						&& board[r + 2][c + 2] == PlayerTurn 
-//						&& board[r + THREE][c + THREE] == PlayerTurn) {
-//					System.out.println(PlayerTurn + " Won!");
-//
-//					return true;
-//
-//					// up left/ down right MAGIC NUMBERS??
-//				} else if ((c <= col - FOUR) && (r >= THREE) 
-//						&& board[r][c] == PlayerTurn 
-//						&& board[r - 1][c + 1] == PlayerTurn
-//						&& board[r - 2][c + 2] == PlayerTurn 
-//						&& board[r - THREE][c + THREE] == PlayerTurn) {
-//
-//					System.out.println(PlayerTurn + " Won!");
-//					return true;
-//
-//				}
-//
-//			}
-//		}
-//		return false;
-//	}
-//
-//	/**
-//	 * A getter for the get board method. 
-//	 * @return integer for where we are on the board.
-//	 */
-//	public final int[][] getBoard() {
-//		return board;
-//	}
-//
-//	/**
-//	 * A getter for the player turn method. 
-//	 * @return returns an integer for which player turn it is. 
-//	 */
-//	public final int getPlayerTurn() {
-//		return PlayerTurn;
-//	}
-//
-//	/**
-//	 * A getter for the number of rows. 
-//	 * @return returns an integer for row. 
-//	 */
-//	public final int getRow() {
-//		return row;
-//	}
-//
-//	/**
-//	 * A getter for the number columns in a method. 
-//	 * @return returns an integer for column. 
-//	 */
-//	public final int getCol() {
-//		return col;
-//	}
-//
-//	/**
-//	 * a boolean for if the game is over or not. 
-//	 * @return true or false.
-//	 */
-//	public final Boolean getGameOver() {
-//		return GameOver;
-//	}
-//
-//
-//}
