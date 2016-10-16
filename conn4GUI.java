@@ -1,4 +1,4 @@
-package connectFour;
+package connectfour;
 
 import javax.swing.JFrame;
 
@@ -23,7 +23,7 @@ public class conn4GUI {
 		
 		JFrame frame = new JFrame("Connect Four");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		conn4Panel panel = new conn4Panel();
+		ConnfourPanel panel = new ConnfourPanel();
         frame.getContentPane().add(panel);
         frame.setSize(MAXSIZE, MAXSIZE);
 		frame.setVisible(true);
