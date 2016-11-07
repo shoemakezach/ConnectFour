@@ -1,4 +1,4 @@
-package conn4;
+package connectfour;
 
 public enum GameType {
 	OnePlayer, TwoPlayer;

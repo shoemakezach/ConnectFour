@@ -1,4 +1,4 @@
-package conn4;
+package connectfour;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
