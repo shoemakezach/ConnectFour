@@ -1,22 +1,29 @@
-package connectFour;
+package conn4;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.event.*;
+
 import java.io.File;
 import java.io.IOException;
+import java.util.concurrent.ThreadLocalRandom;
 
 import javax.imageio.ImageIO;
+
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
+
 /**
- * 
- * @author Zach Shoemake, Zach Hopman, Chris Gonzales 
+ *
+ * @author Zach Shoemake, Zach Hopman, Chris Gonzales
  *
  */
 @SuppressWarnings("serial")
@@ -30,9 +37,12 @@ public class conn4Panel extends JPanel {
 	public static final int SIX = 6;
 	/** constant for the number seven.*/
 	public static final int SEVEN = 7;
+	/** constant for the number eight.*/
+	public static final int EIGHT = 8;
+	/** constant for the number twenty. */
+	public static final int TWENTY = 20;
 	/** constant for the number of the image size.*/
 	public static final int MAX_IMAGE_SIZE = 100;
-
 
 
 	/**
@@ -40,7 +50,7 @@ public class conn4Panel extends JPanel {
 	 */
 	private Image black;
 	/**
-	 * image for a blank tile. 
+	 * image for a blank tile.
 	 */
 	private Image blank;
 	/**
@@ -72,10 +82,29 @@ public class conn4Panel extends JPanel {
 	 * 
 	 */
 	private boolean isClicked;
-	/**
-	 * set a new game for the player. 
-	 */
+	/**set a new game for the player. */
 	private Game game = new Game();
+	/** Label for player one. */
+	private JLabel player1;
+	/** Label for player two. */
+	//private JLabel player2;
+	/** Label for red wins. */
+	private JLabel redWin;
+	/** Label for black wins. */
+	private JLabel blackWin;
+	/** Label for the reset button. */
+	private JButton reset;
+	/** Label for the reset button. */
+	private JButton onePlayer;
+	/** Label for the reset button. */
+	private JButton twoPlayer;
+	/** Label for the reset button. */
+	private JButton easy;
+	/** Label for the reset button. */
+	private JButton medium;
+	/** Label for the reset button. */
+	private JButton hard;
+	
 
 	//GETTER AND SETTERS FOR THE ABOVE VARIABLES. 
 
@@ -255,6 +284,7 @@ public class conn4Panel extends JPanel {
 	}
 
 
+
 	/**
 	 * Button Listener for the connect four game. 
 	 * 
@@ -263,24 +293,23 @@ public class conn4Panel extends JPanel {
 
 	/**
 	 * 
-	 * Method creates the board and sets buttons up. 
-	 * 
 	 */
 	public conn4Panel() {
 
-		game = new Game();
 
-		JPanel bottom = new JPanel();
 		JPanel center = new JPanel();
-
 
 		isClicked = false;
 
 		// create the board
-		center.setLayout(new GridLayout(SIX, SEVEN));
+		center.setLayout(new GridLayout(EIGHT, SEVEN));
 		board = new JButton[SIX][SEVEN];
-		//butReset = new JButton();
-
+		reset = new JButton();
+		onePlayer = new JButton();
+		twoPlayer = new JButton();
+		easy = new JButton();
+		medium = new JButton();
+		hard = new JButton();
 
 		for (int row = 0; row < SIX; row++) {
 			for (int col = 0; col < SEVEN; col++) {
@@ -290,23 +319,44 @@ public class conn4Panel extends JPanel {
 			}
 		}
 
+		reset.addActionListener(listener);
+		onePlayer.addActionListener(listener);
+		twoPlayer.addActionListener(listener);
+		easy.addActionListener(listener);
+		medium.addActionListener(listener);
+		hard.addActionListener(listener);
 
-
-		bottom.setLayout(new GridLayout(THREE, 2));
-
+		JLabel blk1 = new JLabel("");
+		redWin = new JLabel("");
+		blackWin = new JLabel("");
+		player1 = new JLabel("");
+		reset.setText("NEW GAME");
+		reset.setBackground(Color.GREEN);
+		reset.setPreferredSize(new Dimension(TWENTY, TWENTY));
+		onePlayer.setText("One Player");
+		twoPlayer.setText("Two Player");
+		easy.setText("Easy");
+		medium.setText("Medium");
+		hard.setText("Hard");
+		center.add(reset);
+		center.add(blk1);
+		center.add(redWin);
+		center.add(player1, BorderLayout.CENTER);	
+		center.add(blackWin);
+		center.add(onePlayer);
+		center.add(twoPlayer);
+		center.add(easy);
+		center.add(medium);
+		center.add(hard);
 		// add all to contentPane
-		//		add(new JLabel("Connect Four"), 
-		//				BorderLayout.NORTH);
-		add(center, BorderLayout.CENTER);
-		add(bottom, BorderLayout.SOUTH);
+		add(center);
 
-		//MY FILES FOR THE PICTURES
 		try { //find image files
-			File input1 = new File("/Users/Zach/Documents/pics/Blank.png");
+			File input1 = new File("/Users/cgonz/Documents/Blank.png");
 			blank = ImageIO.read(input1);
-			File input2 = new File("/Users/Zach/Documents/pics/Black.png");
+			File input2 = new File("/Users/cgonz/Documents/Black.png");
 			black = ImageIO.read(input2);
-			File input3 = new File("/Users/Zach/Documents/pics/Red.png");
+			File input3 = new File("/Users/cgonz/Documents/Red.png");
 			red = ImageIO.read(input3);
 		} catch (IOException e) {
 			System.out.println("ERROR");
@@ -319,8 +369,6 @@ public class conn4Panel extends JPanel {
 		rED = red.getScaledInstance(MAX_IMAGE_SIZE, MAX_IMAGE_SIZE, 
 				Image.SCALE_DEFAULT);
 
-		//Image bLANK = blank.getScaledInstance(MAX_IMAGE_SIZE, MAX_IMAGE_SIZE, 
-		//		Image.SCALE_DEFAULT); 
 		for (int r = 0; r < SIX; r++) {
 			for (int c = 0; c < SEVEN; c++) {
 				board[r][c].setText("");
@@ -331,51 +379,92 @@ public class conn4Panel extends JPanel {
 		}
 		displayBoard();
 
-
-		//		add(butReset, BorderLayout.CENTER);
 	}
 
 	/**
 	 * 
 	 */
 	private void displayBoard() {
+
+		redWin.setText("Player 1 Wins: " + game.getRedWin());
+		blackWin.setText(" Player 2 Wins: " + game.getBlackWin());
+
 		for (int r = 0; r < SIX; r++) {
 			for (int c = 0; c < SEVEN; c++) {
 				if (game.getBoard()[r][c].isRed()) {
 					board[r][c].setIcon(new ImageIcon(rED));
+
 				} else if (game.getBoard()[r][c].isBlack()) {
 					board[r][c].setIcon(new ImageIcon(bLACK));
 
-					//					game.ChangeTurn();
-					//					setClicked(false);
 				} else {
 					board[r][c].setIcon(new ImageIcon(bLANK));
 				}
 			}
 		}
 
+		if (game.getPlayerTurn() == 1) {
+			player1.setText("       Player 1");
+		}
+		if (game.getPlayerTurn() == 2) {
+			player1.setText("       Player 2");
+		}
+
 	}
 
 	/**
 	 * 
-	 * @author Zach Shoemake, Zach Hopman, Chris Gonzales. 
+	 * @author Zach
 	 *
 	 */
 	class ButtonListener implements ActionListener, 
 	MouseListener {
 		/**
-		 * the action performed method catches users actions. 
 		 * 
-		 * @param e used for which action event the player uses. 
+		 * @param e action event for players action. 
 		 */
 		public void actionPerformed(final ActionEvent e) {
+
+			if (reset == e.getSource()) {
+				game.newGame();
+			}
+			
+			if(onePlayer == e.getSource()){
+				game.type = GameType.OnePlayer;
+				game.setRedWin(0);
+				game.setBlackWin(0);
+				game.newGame();
+			}
+			if(twoPlayer == e.getSource()){
+				game.type = GameType.TwoPlayer;
+				game.setRedWin(0);
+				game.setBlackWin(0);	
+				game.newGame();
+			}
+			if(easy == e.getSource()){
+				game.level = LevelDifficulty.Easy;
+				game.newGame();
+			}
+			if(medium == e.getSource()){
+				game.level = LevelDifficulty.Medium;
+				game.newGame();
+			}
+			if(hard == e.getSource()){
+				game.level = LevelDifficulty.Hard;
+				game.newGame();
+			}
+
 			for (int r = 0; r < SIX; r++) {
 				for (int c = 0; c < SEVEN; c++) {
 					if (board[r][c] == e.getSource()) {
 						System.out.println("Clicked");
 						setClicked(true);
-						//game.Turn(game.GetPlayerTurn(), tempC);
 						game.setPiece(0, c);
+						if(game.type == GameType.OnePlayer){
+							int rand1 = ThreadLocalRandom.current().nextInt(0,6);
+							System.out.println(rand1);
+							game.setPiece(0, rand1);
+						}
 
 					}
 				}
@@ -383,10 +472,20 @@ public class conn4Panel extends JPanel {
 
 			displayBoard();
 			if (game.gameStatus()) {
-				JOptionPane.showMessageDialog(null, "You Win!"
-						+ "\n The game will reset");
-				game.newGame();
-				displayBoard();
+				if (game.getPlayerTurn() == 2) {
+					JOptionPane.showMessageDialog(null, "Player 1 Wins!"
+							+ "\n The game will reset");
+					game.newGame();
+					displayBoard();
+					return;
+				}
+				if (game.getPlayerTurn() == 1) {
+					JOptionPane.showMessageDialog(null, "Player 2 Wins!"
+							+ "\n The game will reset");
+					game.newGame();
+					displayBoard();
+					return;
+				}
 			}
 
 

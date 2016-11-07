@@ -1,4 +1,5 @@
-package connectfour;
+package conn4;
+
 
 /**
  * 
@@ -70,8 +71,10 @@ public class Game {
 	 * 
 	 */
 	public static final int SEVEN = 7; 
-
-
+	
+	public GameType type;
+	public LevelDifficulty level;
+	
 
 	/**
 	 * 
@@ -79,7 +82,8 @@ public class Game {
 	 * 
 	 */
 	public Game() {
-
+		type = GameType.OnePlayer;
+		level = LevelDifficulty.Easy;
 		board = new Cell[row][col];
 		newGame();
 
@@ -96,6 +100,7 @@ public class Game {
 				board[rows][cols] = new Cell(false, false);
 			}
 		}
+		playerTurn = 1;
 		System.out.println("New Game Started\n");
 	}
 
@@ -118,16 +123,15 @@ public class Game {
 	 */
 	public final void setPiece(final int r, final int c) {
 
+		if(type == GameType.TwoPlayer){
 		if (board[r][c].isBlack() || board[r][c].isRed()) { //throw error here
-			System.out.println("Error: Stack Full");
-			return; 
+			throw new NullPointerException();
 		} else if (playerTurn == 1) {
 			for (int i = r; i < SIX; i++) {
 				if (i == FIVE || board[i + 1][c].isRed() 
 						|| board[i + 1][c].isBlack()) {
 					board[i][c].setRed(true);	
 					changeTurn();
-					gameStatus();
 					return;
 				}
 			}
@@ -137,11 +141,43 @@ public class Game {
 						|| board[i + 1][c].isBlack()) {
 					board[i][c].setBlack(true);
 					changeTurn();
-					gameStatus();
 					return;
 				}
 			}
 		}
+		}
+		if(type == GameType.OnePlayer){
+			if( level == LevelDifficulty.Easy){
+				if (board[r][c].isBlack() || board[r][c].isRed()) { //throw error here
+					throw new NullPointerException();
+				} else if (playerTurn == 1) {
+					for (int i = r; i < SIX; i++) {
+						if (i == FIVE || board[i + 1][c].isRed() 
+							|| board[i + 1][c].isBlack()) {
+							board[i][c].setRed(true);	
+							changeTurn();
+							return;
+						}
+					}
+				} else if (playerTurn == 2) {
+					for (int i = r; i < SIX; i++) {
+						if (i == FIVE || board[i + 1][c].isRed() 
+							|| board[i + 1][c].isBlack()) {
+							board[i][c].setBlack(true);
+							changeTurn();
+							return;
+						}
+					}
+				}
+			}
+			if(level == LevelDifficulty.Medium){
+				
+			}
+			if(level == LevelDifficulty.Hard){
+				
+			}
+		}
+		
 	}
 
 	/**
@@ -155,7 +191,7 @@ public class Game {
 		} else if (playerTurn == 2) {
 			playerTurn = 1;
 		} else {
-			System.out.println("PlayerTurn is out of bounds");
+			throw new NullPointerException();
 		}
 	}
 
@@ -204,7 +240,7 @@ public class Game {
 					}
 				}
 
-				//Diagonal Right
+				//Red Diagonal Right
 				if (r + THREE < SIX && c - THREE >= 0) {
 					if (board[r][c].isRed()) {
 						if (board[r + 1][c - 1].isRed()) {
@@ -222,7 +258,7 @@ public class Game {
 					}
 				}
 
-				//Diagonal Left
+				//Red Diagonal Left
 				if (r + THREE < SIX && c + THREE < SEVEN) {
 					if (board[r][c].isRed()) {
 						if (board[r + 1][c + 1].isRed()) {
@@ -385,7 +421,7 @@ public class Game {
 	public final int getRedWin() {
 		return redWin;
 	}
-
+	
 	/**
 	 * setter for the win of red player. 
 	 * @param rWin sets winner to red. 
@@ -393,5 +429,15 @@ public class Game {
 	public final void setRedWin(final int rWin) {
 		this.redWin = rWin;
 	}
+
+	/**
+	 * setter for the player turn. 
+	 * @param pTurn sets players turn. 
+	 */
+	public final void setPlayerTurn(final int pTurn) {
+		this.playerTurn = pTurn;
+	}
+	
+	
 
 }
