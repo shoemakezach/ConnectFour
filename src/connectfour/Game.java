@@ -70,7 +70,9 @@ public class Game {
 	/**
 	 * 
 	 */
-	public static final int SEVEN = 7; 
+	public static final int SEVEN = 7;
+
+	private static final int CONNECT_FOUR_ROWS = 6; 
 	
 	public GameType type;
 	public LevelDifficulty level;
@@ -125,7 +127,7 @@ public class Game {
 
 		if(type == GameType.TwoPlayer){
 		if (board[r][c].isBlack() || board[r][c].isRed()) { //throw error here
-			throw new NullPointerException();
+			throw new IndexOutOfBoundsException();
 		} else if (playerTurn == 1) {
 			for (int i = r; i < SIX; i++) {
 				if (i == FIVE || board[i + 1][c].isRed() 
@@ -148,6 +150,34 @@ public class Game {
 		}
 		if(type == GameType.OnePlayer){
 			if( level == LevelDifficulty.Easy){
+				if (playerTurn == 1) {
+					if (board[r][c].isBlack() || board[r][c].isRed()) { //throw error here
+						throw new IndexOutOfBoundsException();
+					} 
+					for (int i = r; i < SIX; i++) {
+						if (i == FIVE || board[i + 1][c].isRed() 
+							|| board[i + 1][c].isBlack()) {
+							board[i][c].setRed(true);	
+							changeTurn();
+							return;
+						}
+					}
+				} else if (playerTurn == 2) {
+					// Change to Recall get random, also make get random here
+					if (board[r][c].isBlack() || board[r][c].isRed()) { //throw error here
+						throw new IndexOutOfBoundsException();
+					} 
+					for (int i = r; i < SIX; i++) {
+						if (i == FIVE || board[i + 1][c].isRed() 
+							|| board[i + 1][c].isBlack()) {
+							board[i][c].setBlack(true);
+							changeTurn();
+							return;
+						}
+					}
+				}
+			}
+			if(level == LevelDifficulty.Medium){
 				if (board[r][c].isBlack() || board[r][c].isRed()) { //throw error here
 					throw new NullPointerException();
 				} else if (playerTurn == 1) {
@@ -164,14 +194,12 @@ public class Game {
 						if (i == FIVE || board[i + 1][c].isRed() 
 							|| board[i + 1][c].isBlack()) {
 							board[i][c].setBlack(true);
+							// add is valid move here
 							changeTurn();
 							return;
 						}
-					}
-				}
+					}				
 			}
-			if(level == LevelDifficulty.Medium){
-				
 			}
 			if(level == LevelDifficulty.Hard){
 				
@@ -351,6 +379,42 @@ public class Game {
 		return false;
 	}
 
+	/**
+     * Get length of connect in a specific column
+     * @param column
+     * @param player
+     * @param gameBoard
+     * @return
+     */
+   
+	//Morph into get valid move method
+	public static int getVerticalConnects(int column, int player, int[][] gameBoard) {
+        int colStart = 0;
+        int connectLength = 0;
+        // if column is empty
+        if(gameBoard[CONNECT_FOUR_ROWS - 1][column] == 0)
+            return 0;
+        // get first piece
+        while(gameBoard[colStart][column] == 0 && colStart < CONNECT_FOUR_ROWS - 1)
+            colStart++;
+        // if first piece is opponent
+        if(gameBoard[colStart][column] != player) {
+            return 1;
+        }
+        // count connected pieces
+        for(int i = colStart + 1;
+            i < CONNECT_FOUR_ROWS &&
+                gameBoard[i][column] == player;
+            i++) {
+            connectLength++;
+        }
+        if(colStart + connectLength <=2) {
+            return 0;
+        }
+       return 0;
+
+    }
+    
 	/**
 	 * a boolean for whether tile is red or not. 
 	 * 

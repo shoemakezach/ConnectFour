@@ -460,7 +460,8 @@ public class conn4Panel extends JPanel {
 						System.out.println("Clicked");
 						setClicked(true);
 						game.setPiece(0, c);
-						if(game.type == GameType.OnePlayer){
+						//move to Game Class**
+						if(game.type == GameType.OnePlayer && game.level == LevelDifficulty.Easy){
 							int rand1 = ThreadLocalRandom.current().nextInt(0,6);
 							System.out.println(rand1);
 							game.setPiece(0, rand1);
