@@ -334,7 +334,7 @@ public class conn4Panel extends JPanel {
 		reset.setText("NEW GAME");
 		reset.setBackground(Color.GREEN);
 		reset.setPreferredSize(new Dimension(TWENTY, TWENTY));
-		onePlayer.setText("One Player");
+		onePlayer.setText(name);
 		twoPlayer.setText("Two Player");
 		easy.setText("Easy");
 		medium.setText("Medium");
@@ -387,7 +387,7 @@ public class conn4Panel extends JPanel {
 	 */
 	private void displayBoard() {
 
-		redWin.setText("Player 1 Wins: " + game.getRedWin());
+		redWin.setText(getName() + " Wins: " + game.getRedWin());
 		blackWin.setText(" Player 2 Wins: " + game.getBlackWin());
 
 		for (int r = 0; r < SIX; r++) {
@@ -479,7 +479,7 @@ public class conn4Panel extends JPanel {
 			
 			if (game.gameStatus()) {
 				if (game.getPlayerTurn() == 2) {
-					JOptionPane.showMessageDialog(null, "Player 1 Wins!"
+					JOptionPane.showMessageDialog(null, getName() + " Wins!"
 							+ "\n The game will reset");
 					game.newGame();
 					displayBoard();
