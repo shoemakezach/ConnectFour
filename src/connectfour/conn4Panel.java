@@ -472,14 +472,14 @@ public class conn4Panel extends JPanel {
 			displayBoard();
 			if (game.gameStatus()) {
 				if (game.getPlayerTurn() == 2) {
-					JOptionPane.showMessageDialog(null, "Player 2 Wins!"
+					JOptionPane.showMessageDialog(null, "Player 1 Wins!"
 							+ "\n The game will reset");
 					game.newGame();
 					displayBoard();
 					return;
 				}
 				if (game.getPlayerTurn() == 1) {
-					JOptionPane.showMessageDialog(null, "Player 1 Wins!"
+					JOptionPane.showMessageDialog(null, "Player 2 Wins!"
 							+ "\n The game will reset");
 					game.newGame();
 					displayBoard();

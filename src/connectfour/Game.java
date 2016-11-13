@@ -158,20 +158,22 @@ public class Game {
 					for (int i = r; i < SIX; i++) {
 						if (i == FIVE || board[i + 1][c].isRed() 
 							|| board[i + 1][c].isBlack()) {
-							board[i][c].setRed(true);	
+							board[i][c].setRed(true);
+							System.out.println("Player 1");
 							changeTurn();
 							return;
 						}
 					}
 				} else if (playerTurn == 2) {
-					// Change to Recall get random, also make get random here
 					if (board[r][c].isBlack() || board[r][c].isRed()) { //throw error here
-						throw new IndexOutOfBoundsException();
+						setPiece(r,getRandom());
+						return;
 					} 
 					for (int i = r; i < SIX; i++) {
 						if (i == FIVE || board[i + 1][c].isRed() 
 							|| board[i + 1][c].isBlack()) {
 							board[i][c].setBlack(true);
+							System.out.println("Player 2");
 							changeTurn();
 							return;
 						}
