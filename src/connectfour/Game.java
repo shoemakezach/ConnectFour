@@ -1,5 +1,6 @@
 package connectfour;
 
+import java.util.concurrent.ThreadLocalRandom;
 
 /**
  * 
@@ -221,6 +222,16 @@ public class Game {
 		} else {
 			throw new NullPointerException();
 		}
+	}
+	
+	/**
+	 * 
+	 * Randomizes number.
+	 * 
+	 */
+	public final int getRandom() {
+		int rand1 = ThreadLocalRandom.current().nextInt(0,6);
+		return rand1;
 	}
 
 	/**

@@ -462,9 +462,7 @@ public class conn4Panel extends JPanel {
 						game.setPiece(0, c);
 						//move to Game Class**
 						if(game.type == GameType.OnePlayer && game.level == LevelDifficulty.Easy){
-							int rand1 = ThreadLocalRandom.current().nextInt(0,6);
-							System.out.println(rand1);
-							game.setPiece(0, rand1);
+							game.setPiece(0, game.getRandom());
 						}
 
 					}
@@ -474,14 +472,14 @@ public class conn4Panel extends JPanel {
 			displayBoard();
 			if (game.gameStatus()) {
 				if (game.getPlayerTurn() == 2) {
-					JOptionPane.showMessageDialog(null, "Player 1 Wins!"
+					JOptionPane.showMessageDialog(null, "Player 2 Wins!"
 							+ "\n The game will reset");
 					game.newGame();
 					displayBoard();
 					return;
 				}
 				if (game.getPlayerTurn() == 1) {
-					JOptionPane.showMessageDialog(null, "Player 2 Wins!"
+					JOptionPane.showMessageDialog(null, "Player 1 Wins!"
 							+ "\n The game will reset");
 					game.newGame();
 					displayBoard();
