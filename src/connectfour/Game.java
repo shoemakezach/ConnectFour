@@ -406,13 +406,13 @@ public class Game {
 			for (int c = 0; c < col; c++) {
 		if (r + THREE < SIX) {
 			if (board[r][c].isRed()) {
-				if (board[r + 1][c].isRed()) {
-	
+				if (board[r+1][c].isRed()) {
+					if (board[r + 2][c].isRed()) {
 							return c;
 						}
 					}
 				}
-			
+			}
 		}
 			
 		}

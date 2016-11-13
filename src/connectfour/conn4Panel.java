@@ -403,13 +403,13 @@ public class conn4Panel extends JPanel {
 			}
 		}
 
-		if (game.getPlayerTurn() == 1) {
-			String name = JOptionPane.showInputDialog("What is your name?");
-			player1.setText("       " + name + "'s turn");
-		}
-		if (game.getPlayerTurn() == 2) {
-			player1.setText("       Player 2");
-		}
+//		if (game.getPlayerTurn() == 1) {
+//			String name = JOptionPane.showInputDialog("What is your name?");
+//			player1.setText("       " + name + "'s turn");
+//		}
+//		if (game.getPlayerTurn() == 2) {
+//			player1.setText("       Player 2");
+//		}
 
 	}
 
