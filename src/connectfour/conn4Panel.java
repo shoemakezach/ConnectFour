@@ -295,7 +295,7 @@ public class conn4Panel extends JPanel {
 	 * 
 	 */
 	public conn4Panel() {
-
+		setName(JOptionPane.showInputDialog("What is your name?"));
 
 		JPanel center = new JPanel();
 
@@ -326,6 +326,7 @@ public class conn4Panel extends JPanel {
 		medium.addActionListener(listener);
 		hard.addActionListener(listener);
 
+		String name = "Player 1";
 		JLabel blk1 = new JLabel("");
 		redWin = new JLabel("");
 		blackWin = new JLabel("");
@@ -352,11 +353,11 @@ public class conn4Panel extends JPanel {
 		add(center);
 
 		try { //find image files
-			File input1 = new File("/Users/cgonz/Documents/Blank.png");
+			File input1 = new File("Blank.png");
 			blank = ImageIO.read(input1);
-			File input2 = new File("/Users/cgonz/Documents/Black.png");
+			File input2 = new File("Black.png");
 			black = ImageIO.read(input2);
-			File input3 = new File("/Users/cgonz/Documents/Red.png");
+			File input3 = new File("Red.png");
 			red = ImageIO.read(input3);
 		} catch (IOException e) {
 			System.out.println("ERROR");
@@ -403,13 +404,13 @@ public class conn4Panel extends JPanel {
 			}
 		}
 
-//		if (game.getPlayerTurn() == 1) {
-//			String name = JOptionPane.showInputDialog("What is your name?");
-//			player1.setText("       " + name + "'s turn");
-//		}
-//		if (game.getPlayerTurn() == 2) {
-//			player1.setText("       Player 2");
-//		}
+		if (game.getPlayerTurn() == 1) {
+			player1.setText("       " + getName() + "'s turn");
+		}
+		if (game.getPlayerTurn() == 2) {
+			player1.setText("       Player 2");
+		}
+
 
 	}
 
