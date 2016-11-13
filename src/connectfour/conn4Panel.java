@@ -461,15 +461,20 @@ public class conn4Panel extends JPanel {
 						setClicked(true);
 						game.setPiece(0, c);
 						//move to Game Class**
+						
 						if(game.type == GameType.OnePlayer && game.level == LevelDifficulty.Easy){
 							game.setPiece(0, game.getRandom());
 						}
-
+						if(game.type == GameType.OnePlayer && game.level == LevelDifficulty.Medium){
+							game.setPiece(0, game.getVerticalConnects());
+						}
+						
 					}
+					
 				}
 			}
-
 			displayBoard();
+			
 			if (game.gameStatus()) {
 				if (game.getPlayerTurn() == 2) {
 					JOptionPane.showMessageDialog(null, "Player 1 Wins!"

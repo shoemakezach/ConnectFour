@@ -401,32 +401,34 @@ public class Game {
      */
    
 	//Morph into get valid move method
-	public static int getVerticalConnects(int column, int player, int[][] gameBoard) {
-        int colStart = 0;
-        int connectLength = 0;
-        // if column is empty
-        if(gameBoard[CONNECT_FOUR_ROWS - 1][column] == 0)
-            return 0;
-        // get first piece
-        while(gameBoard[colStart][column] == 0 && colStart < CONNECT_FOUR_ROWS - 1)
-            colStart++;
-        // if first piece is opponent
-        if(gameBoard[colStart][column] != player) {
-            return 1;
-        }
-        // count connected pieces
-        for(int i = colStart + 1;
-            i < CONNECT_FOUR_ROWS &&
-                gameBoard[i][column] == player;
-            i++) {
-            connectLength++;
-        }
-        if(colStart + connectLength <=2) {
-            return 0;
-        }
-       return 0;
+	public int getVerticalConnects(){
+		for (int r = 0; r < row; r++) {
+			for (int c = 0; c < col; c++) {
+		if (r + THREE < SIX) {
+			if (board[r][c].isRed()) {
+				if (board[r + 1][c].isRed()) {
+	
+							return c;
+						}
+					}
+				}
+			
+		}
+			
+		}
+		return 0;
 
     }
+	
+	/**
+	 * get Valid move
+	 * 
+	 * @return returns a true or false for red. 
+	 */
+	public final boolean isValidMove(int r, int c) {
+	 
+		return false;
+	}
     
 	/**
 	 * a boolean for whether tile is red or not. 
