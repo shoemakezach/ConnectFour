@@ -459,7 +459,7 @@ public class conn4Panel extends JPanel {
 			for (int r = 0; r < SIX; r++) {
 				for (int c = 0; c < SEVEN; c++) {
 					if (board[r][c] == e.getSource()) {
-						System.out.println("Clicked");
+						System.out.println("Clicked" +r + ""+c);
 						setClicked(true);
 						game.setPiece(0, c);
 						//move to Game Class**

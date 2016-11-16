@@ -402,13 +402,21 @@ public class Game {
    
 	//Morph into get valid move method
 	public int getVerticalConnects(){
-		for (int r = 0; r < row; r++) {
-			for (int c = 0; c < col; c++) {
-		if (r + THREE < SIX) {
-			if (board[r][c].isRed()) {
-				if (board[r+1][c].isRed()) {
-					if (board[r + 2][c].isRed()) {
-							return c;
+		for (int c = col-1; c > 0; c--) {
+			for (int r = row-1; r > 0; r--) {
+		
+				if (r - 3 > 0) {
+			
+					if (board[r][c].isRed()) {
+							System.out.println("is here 1");
+						if (board[r-1][c].isRed()) {
+								System.out.println("is here 2");
+							if (board[r - 2][c].isRed()) {
+								System.out.println("is here 3");
+								if (board[r - 3][c].isBlack() == false) {
+									System.out.println("is here 4");
+								return c;
+								}
 						}
 					}
 				}
@@ -416,7 +424,7 @@ public class Game {
 		}
 			
 		}
-		return 0;
+		return getRandom();
 
     }
 	
