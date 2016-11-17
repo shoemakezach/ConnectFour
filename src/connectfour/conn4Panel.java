@@ -468,7 +468,7 @@ public class conn4Panel extends JPanel {
 							game.setPiece(0, game.getRandom());
 						}
 						if(game.type == GameType.OnePlayer && game.level == LevelDifficulty.Medium){
-							game.setPiece(0, game.getVerticalConnects());
+							game.setPiece(0, game.isValidMove());
 						}
 						
 					}

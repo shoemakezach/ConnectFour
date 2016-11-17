@@ -424,7 +424,38 @@ public class Game {
 		}
 			
 		}
-		return getRandom();
+		return 0;
+
+    }
+	
+	public int getHorizontalConnects(){
+		for (int r = row -1; r > 0; r--) {
+			for (int c = col-1; c > 0; c--) {
+		
+		if (c - 2 > 0) {
+			if (board[r][c].isRed()) {
+				System.out.println("IS HERE 1");
+				if (board[r][c - 1 ].isRed()) {
+					System.out.println("IS HERE 2");
+					if (board[r][c - 2].isRed()) {
+						System.out.println("IS HERE 3");
+						if (board[r][c - THREE].isBlack() == false) {
+
+							return c-3;
+						}
+						if (c < 6 ){
+							if(board[r][c +1].isBlack() == false){
+								return c +1;
+							}
+						}
+							
+					}
+				}
+			}
+		}
+			}
+		}
+		return 1;
 
     }
 	
@@ -433,9 +464,15 @@ public class Game {
 	 * 
 	 * @return returns a true or false for red. 
 	 */
-	public final boolean isValidMove(int r, int c) {
-	 
-		return false;
+	public final int isValidMove() {
+		if(getVerticalConnects() == 0){
+			if(getHorizontalConnects() == 1){
+				return getRandom();
+			}
+			return getHorizontalConnects();
+		}
+			
+		return getVerticalConnects();
 	}
     
 	/**
