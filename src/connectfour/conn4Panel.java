@@ -16,6 +16,7 @@ import javax.imageio.ImageIO;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -94,17 +95,13 @@ public class conn4Panel extends JPanel {
 	private JLabel blackWin;
 	/** Label for the reset button. */
 	private JButton reset;
-	/** Label for the reset button. */
-	private JButton onePlayer;
-	/** Label for the reset button. */
-	private JButton twoPlayer;
-	/** Label for the reset button. */
-	private JButton easy;
-	/** Label for the reset button. */
-	private JButton medium;
-	/** Label for the reset button. */
-	private JButton hard;
-	
+
+	/** Label for difficulty */
+	private final JComboBox<String> difficulty;
+	private String[] opt = {"easy", "medium","hard"};
+	/** Label for game type */
+	private final JComboBox<String> oneOrTwo;
+	private String[] opt1 = {"one player", "two player"};
 
 	//GETTER AND SETTERS FOR THE ABOVE VARIABLES. 
 
@@ -305,11 +302,10 @@ public class conn4Panel extends JPanel {
 		center.setLayout(new GridLayout(EIGHT, SEVEN));
 		board = new JButton[SIX][SEVEN];
 		reset = new JButton();
-		onePlayer = new JButton();
-		twoPlayer = new JButton();
-		easy = new JButton();
-		medium = new JButton();
-		hard = new JButton();
+
+
+		difficulty = new JComboBox<String>(opt);
+		oneOrTwo = new JComboBox<String>(opt1);
 
 		for (int row = 0; row < SIX; row++) {
 			for (int col = 0; col < SEVEN; col++) {
@@ -320,14 +316,11 @@ public class conn4Panel extends JPanel {
 		}
 
 		reset.addActionListener(listener);
-		onePlayer.addActionListener(listener);
-		twoPlayer.addActionListener(listener);
-		easy.addActionListener(listener);
-		medium.addActionListener(listener);
-		hard.addActionListener(listener);
 
-		String name = "One Player";
-		String name1 = "Two PLayer";
+		difficulty.addActionListener(listener);
+		oneOrTwo.addActionListener(listener);
+
+
 		JLabel blk1 = new JLabel("");
 		redWin = new JLabel("");
 		blackWin = new JLabel("");
@@ -335,21 +328,16 @@ public class conn4Panel extends JPanel {
 		reset.setText("NEW GAME");
 		reset.setBackground(Color.GREEN);
 		reset.setPreferredSize(new Dimension(TWENTY, TWENTY));
-		onePlayer.setText(name);
-		twoPlayer.setText(name1);
-		easy.setText("Easy");
-		medium.setText("Medium");
-		hard.setText("Hard");
+
 		center.add(reset);
 		center.add(blk1);
 		center.add(redWin);
 		center.add(player1, BorderLayout.CENTER);	
 		center.add(blackWin);
-		center.add(onePlayer);
-		center.add(twoPlayer);
-		center.add(easy);
-		center.add(medium);
-		center.add(hard);
+
+		center.add(difficulty);
+		center.add(oneOrTwo);
+		
 		// add all to contentPane
 		add(center);
 
@@ -432,29 +420,34 @@ public class conn4Panel extends JPanel {
 				game.newGame();
 			}
 			
-			if(onePlayer == e.getSource()){
-				game.type = GameType.OnePlayer;
-				game.setRedWin(0);
-				game.setBlackWin(0);
-				game.newGame();
+			if(oneOrTwo == e.getSource()){
+				if("one player" == (String)oneOrTwo.getSelectedItem()){
+					game.type = GameType.OnePlayer;
+					game.setRedWin(0);
+					game.setBlackWin(0);
+					game.newGame();
+				}
+				if("two player" == (String)oneOrTwo.getSelectedItem()){
+					game.type = GameType.TwoPlayer;
+					game.setRedWin(0);
+					game.setBlackWin(0);	
+					game.newGame();
+				}
 			}
-			if(twoPlayer == e.getSource()){
-				game.type = GameType.TwoPlayer;
-				game.setRedWin(0);
-				game.setBlackWin(0);	
-				game.newGame();
-			}
-			if(easy == e.getSource()){
-				game.level = LevelDifficulty.Easy;
-				game.newGame();
-			}
-			if(medium == e.getSource()){
-				game.level = LevelDifficulty.Medium;
-				game.newGame();
-			}
-			if(hard == e.getSource()){
-				game.level = LevelDifficulty.Hard;
-				game.newGame();
+
+			if(difficulty == e.getSource()){
+				if("easy" == (String)difficulty.getSelectedItem()){
+					game.level = LevelDifficulty.Easy;
+					game.newGame();
+				}
+				if("medium" == (String)difficulty.getSelectedItem()){
+					game.level = LevelDifficulty.Medium;
+					game.newGame();
+				}
+				if("hard" == (String)difficulty.getSelectedItem()){
+					game.level = LevelDifficulty.Hard;
+					game.newGame();
+				}
 			}
 
 			for (int r = 0; r < SIX; r++) {
