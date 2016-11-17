@@ -326,7 +326,8 @@ public class conn4Panel extends JPanel {
 		medium.addActionListener(listener);
 		hard.addActionListener(listener);
 
-		String name = "Player 1";
+		String name = "One Player";
+		String name1 = "Two PLayer";
 		JLabel blk1 = new JLabel("");
 		redWin = new JLabel("");
 		blackWin = new JLabel("");
@@ -335,7 +336,7 @@ public class conn4Panel extends JPanel {
 		reset.setBackground(Color.GREEN);
 		reset.setPreferredSize(new Dimension(TWENTY, TWENTY));
 		onePlayer.setText(name);
-		twoPlayer.setText("Two Player");
+		twoPlayer.setText(name1);
 		easy.setText("Easy");
 		medium.setText("Medium");
 		hard.setText("Hard");
