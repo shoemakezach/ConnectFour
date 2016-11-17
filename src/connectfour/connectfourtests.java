@@ -118,7 +118,7 @@ public class connectfourtests {
 		game.setPiece(three, two);
 		game.setPiece(one, five);
 		b = game.getBoard();
-		assertTrue(game.gameStatus());
+		assertTrue(game.gameStatus() == 1);
 	}
 	
 	/**
@@ -169,7 +169,7 @@ public class connectfourtests {
 		game.setPiece(one, three);
 		game.setPiece(one, two);
 		b = game.getBoard();
-		assertTrue(game.gameStatus());
+		assertTrue(game.gameStatus() == 1);
 	}
 	
 	/**
@@ -187,7 +187,7 @@ public class connectfourtests {
 		game.setPiece(one, three);
 		game.setPiece(one, two);
 		b = game.getBoard();
-		assertTrue(game.gameStatus());
+		assertTrue(game.gameStatus() == 2);
 	}
 	
 	/**
@@ -242,7 +242,7 @@ public class connectfourtests {
 		game.setPiece(three, two);
 		game.setPiece(one, five);
 		b = game.getBoard();
-		assertTrue(game.gameStatus());
+		assertTrue(game.gameStatus() == 2);
 	}
 	
 	/**
@@ -263,7 +263,7 @@ public class connectfourtests {
 		game.setPiece(one, four);
 		game.setPiece(one, four);
 		b = game.getBoard();
-		assertTrue(game.gameStatus());
+		assertTrue(game.gameStatus() == 1);
 	}
 	
 	/**
@@ -284,7 +284,7 @@ public class connectfourtests {
 		game.setPiece(one, two);
 		game.setPiece(one, two);
 		b = game.getBoard();
-		assertTrue(game.gameStatus());
+		assertTrue(game.gameStatus() == 1);
 	}
 	
 	/**
@@ -306,7 +306,7 @@ public class connectfourtests {
 		game.setPiece(one, four);
 		game.setPiece(one, four);
 		b = game.getBoard();
-		assertTrue(game.gameStatus());
+		assertTrue(game.gameStatus() == 2);
 	}
 	
 	/**
@@ -328,7 +328,7 @@ public class connectfourtests {
 		game.setPiece(one, two);
 		game.setPiece(one, two);
 		b = game.getBoard();
-		assertTrue(game.gameStatus());
+		assertTrue(game.gameStatus() == 2);
 	}
 	
 	/**
@@ -406,7 +406,7 @@ public class connectfourtests {
 		game = new Game();
 		game.setPiece(five, five);
 		game.getBoard();
-		assertFalse(game.gameStatus());
+		assertFalse(game.gameStatus() == 0);
 	}
 
 

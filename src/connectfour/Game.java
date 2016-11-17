@@ -242,7 +242,7 @@ public class Game {
 	 * 
 	 * @return returns the status of the game.
 	 */
-	public final boolean gameStatus() {
+	public final int gameStatus() {
 		for (int r = 0; r < row; r++) {
 			for (int c = 0; c < col; c++) {
 
@@ -257,7 +257,7 @@ public class Game {
 
 									System.out.println(playerTurn + " Won!");
 									redWin = redWin + 1;
-									return true;
+									return 1;
 								}
 							}
 						}
@@ -274,7 +274,7 @@ public class Game {
 
 									System.out.println(playerTurn + " Won!");
 									redWin = redWin + 1;
-									return true;
+									return 1;
 								}
 							}
 						}
@@ -292,7 +292,7 @@ public class Game {
 
 									System.out.println(playerTurn + " Won!");
 									redWin = redWin + 1;
-									return true;
+									return 1;
 								}
 							}
 						}
@@ -310,7 +310,7 @@ public class Game {
 
 									System.out.println(playerTurn + " Won!");
 									redWin = redWin + 1;
-									return true;
+									return 1;
 								}
 							}
 						}
@@ -327,7 +327,7 @@ public class Game {
 
 									System.out.println(playerTurn + " Won!");
 									blackWin = blackWin + 1;
-									return true;
+									return 2;
 								}
 							}
 						}
@@ -344,7 +344,7 @@ public class Game {
 
 									System.out.println(playerTurn + " Won!");
 									blackWin = blackWin + 1;
-									return true;
+									return 2;
 								}
 							}
 						}
@@ -362,7 +362,7 @@ public class Game {
 
 									System.out.println(playerTurn + " Won!");
 									blackWin = blackWin + 1;
-									return true;
+									return 2;
 								}
 							}
 						}
@@ -380,7 +380,7 @@ public class Game {
 
 									System.out.println(playerTurn + " Won!");
 									blackWin = blackWin + 1;
-									return true;
+									return 2;
 								}
 							}
 						}
@@ -389,7 +389,7 @@ public class Game {
 
 			}
 		}
-		return false;
+		return 0;
 	}
 
 	/**
