@@ -124,7 +124,7 @@ public class Game {
 	 * @param r uses the row for parameter. 
 	 * @param c uses the column for parameter. 
 	 */
-	public final void setPiece(final int r, final int c) {
+	public final int setPiece(final int r, final int c) {
 
 		if(type == GameType.TwoPlayer){
 		if (board[r][c].isBlack() || board[r][c].isRed()) { //throw error here
@@ -135,7 +135,7 @@ public class Game {
 						|| board[i + 1][c].isBlack()) {
 					board[i][c].setRed(true);	
 					changeTurn();
-					return;
+					return i;
 				}
 			}
 		} else if (playerTurn == 2) {
@@ -144,7 +144,7 @@ public class Game {
 						|| board[i + 1][c].isBlack()) {
 					board[i][c].setBlack(true);
 					changeTurn();
-					return;
+					return i;
 				}
 			}
 		}
@@ -161,13 +161,13 @@ public class Game {
 							board[i][c].setRed(true);
 							System.out.println("Player 1");
 							changeTurn();
-							return;
+							return i;
 						}
 					}
 				} else if (playerTurn == 2) {
 					if (board[r][c].isBlack() || board[r][c].isRed()) { //throw error here
 						setPiece(r,getRandom());
-						return;
+						return r;
 					} 
 					for (int i = r; i < SIX; i++) {
 						if (i == FIVE || board[i + 1][c].isRed() 
@@ -175,7 +175,7 @@ public class Game {
 							board[i][c].setBlack(true);
 							System.out.println("Player 2");
 							changeTurn();
-							return;
+							return i;
 						}
 					}
 				}
@@ -187,19 +187,19 @@ public class Game {
 					for (int i = r; i < SIX; i++) {
 						if (i == FIVE || board[i + 1][c].isRed() 
 							|| board[i + 1][c].isBlack()) {
-							board[i][c].setRed(true);	
+							//board[i][c].setRed(true);	
 							changeTurn();
-							return;
+							return i;
 						}
 					}
 				} else if (playerTurn == 2) {
 					for (int i = r; i < SIX; i++) {
 						if (i == FIVE || board[i + 1][c].isRed() 
 							|| board[i + 1][c].isBlack()) {
-							board[i][c].setBlack(true);
+							//board[i][c].setBlack(true);
 							// add is valid move here
 							changeTurn();
-							return;
+							return i;
 						}
 					}				
 			}
@@ -208,6 +208,7 @@ public class Game {
 				
 			}
 		}
+		return -1;
 		
 	}
 

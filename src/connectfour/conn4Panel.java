@@ -455,14 +455,17 @@ public class conn4Panel extends JPanel {
 					if (board[r][c] == e.getSource()) {
 						System.out.println("Clicked" +r + ""+c);
 						setClicked(true);
-						game.setPiece(0, c);
+						animation(game.setPiece(0, c), c);
 						//move to Game Class**
 						
 						if(game.type == GameType.OnePlayer && game.level == LevelDifficulty.Easy){
-							game.setPiece(0, game.getRandom());
+							int rand = game.getRandom();
+							animation(game.setPiece(0, rand), rand);
 						}
 						if(game.type == GameType.OnePlayer && game.level == LevelDifficulty.Medium){
 							game.setPiece(0, game.isValidMove());
+							int valid = game.isValidMove();
+							animation(game.setPiece(0, valid), valid);
 						}
 						
 					}
@@ -525,5 +528,46 @@ public class conn4Panel extends JPanel {
 	 */
 	public final void setClicked(final boolean clicked) {
 		this.isClicked = clicked;
+	}
+	public void animation(int rownum, int colnum){
+				
+		 System.out.println("rows: "+ rownum);
+		if (rownum == -1){
+			System.out.println("Not Valid Move");
+			return;
+		}
+		if (game.getPlayerTurn() == 1)
+		{
+			for (int i = 0; i<=rownum;i++)
+			{
+				if ( i != 0)
+					board[i-1][rownum].setIcon(new ImageIcon(bLANK));
+				board[i][rownum].setIcon(new ImageIcon(rED));
+				//displayBoard();
+				try {
+					Thread.sleep(50);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		}
+		if (game.getPlayerTurn() == 2)
+		{
+			for (int i = 0; i<rownum;i++)
+			{
+				if ( i != 0)
+					board[i-1][rownum].setIcon(new ImageIcon(bLANK));
+				board[i][rownum].setIcon(new ImageIcon(bLACK));
+				//displayBoard();
+				try {
+					Thread.sleep(50);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		}
+			
 	}
 }
