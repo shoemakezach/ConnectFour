@@ -529,9 +529,16 @@ public class conn4Panel extends JPanel {
 	public final void setClicked(final boolean clicked) {
 		this.isClicked = clicked;
 	}
+	/**
+	 * Creates an animation for pieces being dropped in 
+	 * 
+	 * @param rownum is the row the piece should end up in
+	 * @param colnum is the column the piece should go in
+	 */
 	public void animation(int rownum, int colnum){
-				
-		 System.out.println("rows: "+ rownum);
+		
+		rED = red.getScaledInstance(MAX_IMAGE_SIZE, MAX_IMAGE_SIZE, 
+				Image.SCALE_DEFAULT);
 		if (rownum == -1){
 			System.out.println("Not Valid Move");
 			return;
@@ -541,13 +548,12 @@ public class conn4Panel extends JPanel {
 			for (int i = 0; i<=rownum;i++)
 			{
 				if ( i != 0)
-					board[i-1][rownum].setIcon(new ImageIcon(bLANK));
-				board[i][rownum].setIcon(new ImageIcon(rED));
-				//displayBoard();
+					board[i-1][colnum].setIcon(new ImageIcon(bLANK));
+				board[i][colnum].setIcon(new ImageIcon(rED));
+				System.out.println("image set at: "+ i +", "+colnum);
 				try {
 					Thread.sleep(50);
 				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}
@@ -557,13 +563,12 @@ public class conn4Panel extends JPanel {
 			for (int i = 0; i<rownum;i++)
 			{
 				if ( i != 0)
-					board[i-1][rownum].setIcon(new ImageIcon(bLANK));
-				board[i][rownum].setIcon(new ImageIcon(bLACK));
-				//displayBoard();
+					board[i-1][colnum].setIcon(new ImageIcon(bLANK));
+				board[i][colnum].setIcon(new ImageIcon(bLACK));
+				System.out.println("image set at: "+ i +", "+colnum);
 				try {
 					Thread.sleep(50);
 				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}
