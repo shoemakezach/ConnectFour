@@ -463,7 +463,6 @@ public class conn4Panel extends JPanel {
 							animation(game.setPiece(0, rand), rand);
 						}
 						if(game.type == GameType.OnePlayer && game.level == LevelDifficulty.Medium){
-							game.setPiece(0, game.isValidMove());
 							int valid = game.isValidMove();
 							animation(game.setPiece(0, valid), valid);
 						}
@@ -533,12 +532,9 @@ public class conn4Panel extends JPanel {
 	 * Creates an animation for pieces being dropped in 
 	 * 
 	 * @param rownum is the row the piece should end up in
-	 * @param colnum is the column the piece should go in
+	 * @param colnum is the column the piece should 
 	 */
 	public void animation(int rownum, int colnum){
-		
-		rED = red.getScaledInstance(MAX_IMAGE_SIZE, MAX_IMAGE_SIZE, 
-				Image.SCALE_DEFAULT);
 		if (rownum == -1){
 			System.out.println("Not Valid Move");
 			return;
