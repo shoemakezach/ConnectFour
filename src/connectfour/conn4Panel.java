@@ -521,6 +521,7 @@ public class conn4Panel extends JPanel {
 					}
 
 				}
+			}
 			
 			displayBoard();
 
@@ -538,6 +539,7 @@ public class conn4Panel extends JPanel {
 				displayBoard();
 				return;
 			}
+			
 
 
 
