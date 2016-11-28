@@ -96,10 +96,10 @@ public class conn4Panel extends JPanel {
 	/** Label for the reset button. */
 	private JButton reset;
 
-	/** Label for difficulty */
+	/** drop down box for difficulty */
 	private final JComboBox<String> difficulty;
 	private String[] opt = {"easy", "medium","hard"};
-	/** Label for game type */
+	/** drop down box for game type */
 	private final JComboBox<String> oneOrTwo;
 	private String[] opt1 = {"one player", "two player"};
 
