@@ -45,8 +45,6 @@ public class conn4Panel extends JPanel {
 	/** constant for the number of the image size.*/
 	public static final int MAX_IMAGE_SIZE = 100;
 
-	/** the current players color tile. */
-	private Image current; 
 	/** image for the black tile.*/
 	private Image black;
 	/** image for a blank tile.*/
@@ -61,8 +59,8 @@ public class conn4Panel extends JPanel {
 	private Image blue;
 	/** image for a red tile. */
 	private Image pink;
-	/** image for a current tile. */
-	private Image cURRENT; 
+	/** image for a star tile. */
+	private Image star;
 	/** image for a black tile. */
 	private Image bLACK;
 	/** image for a blank tile. */
@@ -77,6 +75,8 @@ public class conn4Panel extends JPanel {
 	private Image bLUE;
 	/** image for a green tile. */
 	private Image gREEN;
+	/** image for a star tile. */
+	private Image sTAR; 
 	/** a temporary integer for row. */
 	private int tempR;
 	/** a temporary integer for column. */
@@ -104,7 +104,8 @@ public class conn4Panel extends JPanel {
 	private String[] opt1 = {"one player", "two player"};
 	/** label to change the color of pieces. */
 	private final JComboBox<String> color; 
-	private String[] opt2 = {"red", "orange", "pink", "blue", "green"}; 
+	private String[] opt2 = {"red", "orange", "pink", "blue", 
+			"green", "star"}; 
 
 	//GETTER AND SETTERS FOR THE ABOVE VARIABLES. 
 
@@ -364,12 +365,12 @@ public class conn4Panel extends JPanel {
 			green = ImageIO.read(input6);
 			File input7 = new File("Blue.png");
 			blue = ImageIO.read(input7);
+			File input8 = new File("star.png");
+			star = ImageIO.read(input8);
 		} catch (IOException e) {
 			System.out.println("ERROR");
 		}
 
-		bLANK = blank.getScaledInstance(MAX_IMAGE_SIZE, MAX_IMAGE_SIZE, 
-				Image.SCALE_DEFAULT); 
 		bLANK = blank.getScaledInstance(MAX_IMAGE_SIZE, MAX_IMAGE_SIZE, 
 				Image.SCALE_DEFAULT); 
 		bLACK = black.getScaledInstance(MAX_IMAGE_SIZE, MAX_IMAGE_SIZE, 
@@ -383,6 +384,8 @@ public class conn4Panel extends JPanel {
 		pINK = pink.getScaledInstance(MAX_IMAGE_SIZE, MAX_IMAGE_SIZE, 
 				Image.SCALE_DEFAULT);
 		oRANGE = orange.getScaledInstance(MAX_IMAGE_SIZE, MAX_IMAGE_SIZE, 
+				Image.SCALE_DEFAULT);
+		sTAR = star.getScaledInstance(MAX_IMAGE_SIZE, MAX_IMAGE_SIZE, 
 				Image.SCALE_DEFAULT);
 
 		for (int r = 0; r < SIX; r++) {
@@ -442,9 +445,9 @@ public class conn4Panel extends JPanel {
 		 */
 		public void actionPerformed(final ActionEvent e) {
 			if (color == e.getSource()) {
-				for (int i = 0; i < SIX; i++) {
-					for (int j = 0; j < SEVEN; j++) {
-						if(game.getBoard()[i][j].isRed()) {
+				for (int r = 0; r < SIX; r++) {
+					for (int c = 0; c < SEVEN; c++) {
+						if(game.getBoard()[r][c].isRed()) {
 							if("red" == (String)color.getSelectedItem()) {
 								setRed(rED);
 							}
@@ -459,6 +462,9 @@ public class conn4Panel extends JPanel {
 							}
 							if("blue" == (String)color.getSelectedItem()) {
 								setRed(bLUE);
+							}
+							if("star" == (String)color.getSelectedItem()) {
+								setRed(sTAR);
 							}
 						}
 					}
