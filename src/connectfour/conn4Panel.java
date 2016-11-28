@@ -463,7 +463,7 @@ public class conn4Panel extends JPanel {
 							animation(game.setPiece(0, rand), rand);
 						}
 						if(game.type == GameType.OnePlayer && game.level == LevelDifficulty.Medium){
-							game.setPiece(0, game.isValidMove());
+							
 							int valid = game.isValidMove();
 							animation(game.setPiece(0, valid), valid);
 						}
@@ -550,9 +550,10 @@ public class conn4Panel extends JPanel {
 				if ( i != 0)
 					board[i-1][colnum].setIcon(new ImageIcon(bLANK));
 				board[i][colnum].setIcon(new ImageIcon(rED));
-				System.out.println("image set at: "+ i +", "+colnum);
+				System.out.println("1image set at: "+ i +", "+colnum);
 				try {
 					Thread.sleep(50);
+					
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 				}
@@ -562,10 +563,12 @@ public class conn4Panel extends JPanel {
 		{
 			for (int i = 0; i<rownum;i++)
 			{
-				if ( i != 0)
-					board[i-1][colnum].setIcon(new ImageIcon(bLANK));
-				board[i][colnum].setIcon(new ImageIcon(bLACK));
-				System.out.println("image set at: "+ i +", "+colnum);
+				if ( i != 0){
+				//board[i+1][colnum].setIcon(new ImageIcon(bLANK));
+				board[i][colnum].setIcon(new ImageIcon(rED));
+			
+				System.out.println("2image set at: "+ i +", "+colnum);
+				}
 				try {
 					Thread.sleep(50);
 				} catch (InterruptedException e) {

@@ -12,7 +12,7 @@ public class Game {
 	/**
 	 * a certain cell on the board.
 	 */
-	private Cell[][] board;
+	public Cell[][] board;
 
 	/**
 	 * states who's turn it is. 
@@ -187,7 +187,7 @@ public class Game {
 					for (int i = r; i < SIX; i++) {
 						if (i == FIVE || board[i + 1][c].isRed() 
 							|| board[i + 1][c].isBlack()) {
-							//board[i][c].setRed(true);	
+							board[i][c].setRed(true);	
 							changeTurn();
 							return i;
 						}
@@ -196,7 +196,7 @@ public class Game {
 					for (int i = r; i < SIX; i++) {
 						if (i == FIVE || board[i + 1][c].isRed() 
 							|| board[i + 1][c].isBlack()) {
-							//board[i][c].setBlack(true);
+							board[i][c].setBlack(true);
 							// add is valid move here
 							changeTurn();
 							return i;
