@@ -9,14 +9,10 @@ package connectfour;
  */
 public class Cell {
 
-	/**
-	 * 
-	 */
+	/** Returns a true or false value. */
 	private boolean isRed;
 	
-	/**
-	 * 
-	 */
+	/** Returns a true or false value. */
 	private boolean isBlack;
 	
 	/**

@@ -45,43 +45,43 @@ public class conn4Panel extends JPanel {
 	/** constant for the number of the image size.*/
 	public static final int MAX_IMAGE_SIZE = 100;
 
-
-	/**
-	 * image for the black tile.
-	 */
+	/** the current players color tile. */
+	private Image current; 
+	/** image for the black tile.*/
 	private Image black;
-	/**
-	 * image for a blank tile.
-	 */
+	/** image for a blank tile.*/
 	private Image blank;
-	/**
-	 * image for a red tile. 
-	 */
+	/** image for a red tile. */
 	private Image red;
-	/**
-	 * image for a black tile. 
-	 */
+	/** image for a red tile.*/
+	private Image orange;
+	/** image for a red tile. */
+	private Image green;
+	/** image for a red tile. */
+	private Image blue;
+	/** image for a red tile. */
+	private Image pink;
+	/** image for a current tile. */
+	private Image cURRENT; 
+	/** image for a black tile. */
 	private Image bLACK;
-	/**
-	 * image for a blank tile. 
-	 */
+	/** image for a blank tile. */
 	private Image bLANK;
-	/**
-	 * image for a red tile. 
-	 */
+	/** image for a red tile. */
 	private Image rED;
-
-	/**
-	 * a temporary integer for row. 
-	 */
+	/** image for a ornage tile. */
+	private Image oRANGE;
+	/** image for a pink tile. */
+	private Image pINK;
+	/** image for a blue tile. */
+	private Image bLUE;
+	/** image for a green tile. */
+	private Image gREEN;
+	/** a temporary integer for row. */
 	private int tempR;
-	/**
-	 * a temporary integer for column. 
-	 */
+	/** a temporary integer for column. */
 	private int tempC;
-	/**
-	 * 
-	 */
+	/** Returns a true or false for is clicked. */
 	private boolean isClicked;
 	/**set a new game for the player. */
 	private Game game = new Game();
@@ -102,6 +102,9 @@ public class conn4Panel extends JPanel {
 	/** drop down box for game type */
 	private final JComboBox<String> oneOrTwo;
 	private String[] opt1 = {"one player", "two player"};
+	/** label to change the color of pieces. */
+	private final JComboBox<String> color; 
+	private String[] opt2 = {"red", "orange", "pink", "blue", "green"}; 
 
 	//GETTER AND SETTERS FOR THE ABOVE VARIABLES. 
 
@@ -303,9 +306,10 @@ public class conn4Panel extends JPanel {
 		board = new JButton[SIX][SEVEN];
 		reset = new JButton();
 
-
 		difficulty = new JComboBox<String>(opt);
 		oneOrTwo = new JComboBox<String>(opt1);
+		color = new JComboBox<String>(opt2); 
+
 
 		for (int row = 0; row < SIX; row++) {
 			for (int col = 0; col < SEVEN; col++) {
@@ -316,7 +320,7 @@ public class conn4Panel extends JPanel {
 		}
 
 		reset.addActionListener(listener);
-
+		color.addActionListener(listener);
 		difficulty.addActionListener(listener);
 		oneOrTwo.addActionListener(listener);
 
@@ -328,6 +332,7 @@ public class conn4Panel extends JPanel {
 		reset.setText("NEW GAME");
 		reset.setBackground(Color.GREEN);
 		reset.setPreferredSize(new Dimension(TWENTY, TWENTY));
+		
 
 		center.add(reset);
 		center.add(blk1);
@@ -337,26 +342,47 @@ public class conn4Panel extends JPanel {
 
 		center.add(difficulty);
 		center.add(oneOrTwo);
-		
+		center.add(color);
+
 		// add all to contentPane
 		add(center);
 
 		try { //find image files
+			File input0 = new File("Red.png"); //the current image
+			red = ImageIO.read(input0);
 			File input1 = new File("Blank.png");
 			blank = ImageIO.read(input1);
 			File input2 = new File("Black.png");
 			black = ImageIO.read(input2);
 			File input3 = new File("Red.png");
 			red = ImageIO.read(input3);
+			File input4 = new File("Orange.png");
+			orange = ImageIO.read(input4);
+			File input5 = new File("Pink.png");
+			pink = ImageIO.read(input5);
+			File input6 = new File("Green.png");
+			green = ImageIO.read(input6);
+			File input7 = new File("Blue.png");
+			blue = ImageIO.read(input7);
 		} catch (IOException e) {
 			System.out.println("ERROR");
 		}
 
 		bLANK = blank.getScaledInstance(MAX_IMAGE_SIZE, MAX_IMAGE_SIZE, 
 				Image.SCALE_DEFAULT); 
+		bLANK = blank.getScaledInstance(MAX_IMAGE_SIZE, MAX_IMAGE_SIZE, 
+				Image.SCALE_DEFAULT); 
 		bLACK = black.getScaledInstance(MAX_IMAGE_SIZE, MAX_IMAGE_SIZE, 
 				Image.SCALE_DEFAULT);
 		rED = red.getScaledInstance(MAX_IMAGE_SIZE, MAX_IMAGE_SIZE, 
+				Image.SCALE_DEFAULT);
+		gREEN = green.getScaledInstance(MAX_IMAGE_SIZE, MAX_IMAGE_SIZE, 
+				Image.SCALE_DEFAULT);
+		bLUE = blue.getScaledInstance(MAX_IMAGE_SIZE, MAX_IMAGE_SIZE, 
+				Image.SCALE_DEFAULT);
+		pINK = pink.getScaledInstance(MAX_IMAGE_SIZE, MAX_IMAGE_SIZE, 
+				Image.SCALE_DEFAULT);
+		oRANGE = orange.getScaledInstance(MAX_IMAGE_SIZE, MAX_IMAGE_SIZE, 
 				Image.SCALE_DEFAULT);
 
 		for (int r = 0; r < SIX; r++) {
@@ -372,7 +398,7 @@ public class conn4Panel extends JPanel {
 	}
 
 	/**
-	 * 
+	 * This method updates what the player sees on the board. 
 	 */
 	private void displayBoard() {
 
@@ -415,11 +441,35 @@ public class conn4Panel extends JPanel {
 		 * @param e action event for players action. 
 		 */
 		public void actionPerformed(final ActionEvent e) {
-
+			if (color == e.getSource()) {
+				for (int i = 0; i < SIX; i++) {
+					for (int j = 0; j < SEVEN; j++) {
+						if(game.getBoard()[i][j].isRed()) {
+							if("red" == (String)color.getSelectedItem()) {
+								setRed(rED);
+							}
+							if("green" == (String)color.getSelectedItem()) {
+								setRed(gREEN);
+							}
+							if("pink" == (String)color.getSelectedItem()) {
+								setRed(pINK);
+							}
+							if("orange" == (String)color.getSelectedItem()) {
+								setRed(oRANGE);
+							}
+							if("blue" == (String)color.getSelectedItem()) {
+								setRed(bLUE);
+							}
+						}
+					}
+				}
+				displayBoard(); 
+			}
+			
 			if (reset == e.getSource()) {
 				game.newGame();
 			}
-			
+
 			if(oneOrTwo == e.getSource()){
 				if("one player" == (String)oneOrTwo.getSelectedItem()){
 					game.type = GameType.OnePlayer;
@@ -457,38 +507,38 @@ public class conn4Panel extends JPanel {
 						setClicked(true);
 						animation(game.setPiece(0, c), c);
 						//move to Game Class**
-						
+
 						if(game.type == GameType.OnePlayer && game.level == LevelDifficulty.Easy){
 							int rand = game.getRandom();
 							animation(game.setPiece(0, rand), rand);
 						}
 						if(game.type == GameType.OnePlayer && game.level == LevelDifficulty.Medium){
-							
+
 							int valid = game.isValidMove();
 							animation(game.setPiece(0, valid), valid);
 						}
-						
+
 					}
-					
+
 				}
-			}
-			displayBoard();
 			
+			displayBoard();
+
 			if (game.gameStatus() == 1) {
-					JOptionPane.showMessageDialog(null, getName() + " Wins!"
-							+ "\n The game will reset");
-					game.newGame();
-					displayBoard();
-					return;
+				JOptionPane.showMessageDialog(null, getName() + " Wins!"
+						+ "\n The game will reset");
+				game.newGame();
+				displayBoard();
+				return;
 			}
 			if (game.gameStatus() == 2) {
-					JOptionPane.showMessageDialog(null, "Player 2 Wins!"
-							+ "\n The game will reset");
-					game.newGame();
-					displayBoard();
-					return;
+				JOptionPane.showMessageDialog(null, "Player 2 Wins!"
+						+ "\n The game will reset");
+				game.newGame();
+				displayBoard();
+				return;
 			}
-			
+
 
 
 		}
@@ -536,7 +586,7 @@ public class conn4Panel extends JPanel {
 	 * @param colnum is the column the piece should go in
 	 */
 	public void animation(int rownum, int colnum){
-		
+
 		rED = red.getScaledInstance(MAX_IMAGE_SIZE, MAX_IMAGE_SIZE, 
 				Image.SCALE_DEFAULT);
 		if (rownum == -1){
@@ -576,6 +626,6 @@ public class conn4Panel extends JPanel {
 				}
 			}
 		}
-			
+
 	}
 }

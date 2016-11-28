@@ -72,7 +72,9 @@ public class Game {
 	 * 
 	 */
 	public static final int SEVEN = 7;
-
+	/**
+	 * 
+	 */
 	private static final int CONNECT_FOUR_ROWS = 6; 
 	
 	public GameType type;
