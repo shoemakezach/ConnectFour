@@ -334,7 +334,7 @@ public class conn4Panel extends JPanel {
 		reset.setBackground(Color.GREEN);
 		reset.setPreferredSize(new Dimension(TWENTY, TWENTY));
 		
-
+		
 		center.add(reset);
 		center.add(blk1);
 		center.add(redWin);
