@@ -12,7 +12,7 @@ public class Game {
 	/**
 	 * a certain cell on the board.
 	 */
-	private Cell[][] board;
+	public Cell[][] board;
 
 	/**
 	 * states who's turn it is. 

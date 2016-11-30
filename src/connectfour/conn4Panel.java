@@ -96,10 +96,10 @@ public class conn4Panel extends JPanel {
 	/** Label for the reset button. */
 	private JButton reset;
 
-	/** Label for difficulty */
+	/** drop down box for difficulty */
 	private final JComboBox<String> difficulty;
 	private String[] opt = {"easy", "medium","hard"};
-	/** Label for game type */
+	/** drop down box for game type */
 	private final JComboBox<String> oneOrTwo;
 	private String[] opt1 = {"one player", "two player"};
 	/** label to change the color of pieces. */
@@ -519,6 +519,7 @@ public class conn4Panel extends JPanel {
 							animation(game.setPiece(0, rand), rand);
 						}
 						if(game.type == GameType.OnePlayer && game.level == LevelDifficulty.Medium){
+
 							int valid = game.isValidMove();
 							animation(game.setPiece(0, valid), valid);
 						}
@@ -527,6 +528,7 @@ public class conn4Panel extends JPanel {
 
 				}
 			}
+			
 			displayBoard();
 
 			if (game.gameStatus() == 1) {
@@ -543,6 +545,7 @@ public class conn4Panel extends JPanel {
 				displayBoard();
 				return;
 			}
+			
 
 
 
@@ -605,9 +608,10 @@ public class conn4Panel extends JPanel {
 				if ( i != 0)
 					board[i-1][colnum].setIcon(new ImageIcon(bLANK));
 				board[i][colnum].setIcon(new ImageIcon(rED));
-				System.out.println("image set at: "+ i +", "+colnum);
+				System.out.println("1image set at: "+ i +", "+colnum);
 				try {
 					Thread.sleep(50);
+					
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 				}
@@ -617,10 +621,12 @@ public class conn4Panel extends JPanel {
 		{
 			for (int i = 0; i<rownum;i++)
 			{
-				if ( i != 0)
-					board[i-1][colnum].setIcon(new ImageIcon(bLANK));
-				board[i][colnum].setIcon(new ImageIcon(bLACK));
-				System.out.println("image set at: "+ i +", "+colnum);
+				if ( i != 0){
+				//board[i+1][colnum].setIcon(new ImageIcon(bLANK));
+				board[i][colnum].setIcon(new ImageIcon(rED));
+			
+				System.out.println("2image set at: "+ i +", "+colnum);
+				}
 				try {
 					Thread.sleep(50);
 				} catch (InterruptedException e) {
