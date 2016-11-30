@@ -450,21 +450,31 @@ public class conn4Panel extends JPanel {
 						if(game.getBoard()[r][c].isRed()) {
 							if("red" == (String)color.getSelectedItem()) {
 								setRed(rED);
+								setRED(rED);
 							}
 							if("green" == (String)color.getSelectedItem()) {
 								setRed(gREEN);
+								setRED(gREEN); 
 							}
 							if("pink" == (String)color.getSelectedItem()) {
 								setRed(pINK);
+								setRED(pINK); 
+
 							}
 							if("orange" == (String)color.getSelectedItem()) {
 								setRed(oRANGE);
+								setRED(oRANGE); 
+
 							}
 							if("blue" == (String)color.getSelectedItem()) {
 								setRed(bLUE);
+								setRED(bLUE); 
+
 							}
 							if("star" == (String)color.getSelectedItem()) {
 								setRed(sTAR);
+								setRED(sTAR); 
+
 							}
 						}
 					}
