@@ -207,8 +207,30 @@ public class Game {
 			}
 			}
 			if(level == LevelDifficulty.Hard){
-				
+				if (board[r][c].isBlack() || board[r][c].isRed()) { //throw error here
+					throw new NullPointerException();
+				} else if (playerTurn == 1) {
+					for (int i = r; i < SIX; i++) {
+						if (i == FIVE || board[i + 1][c].isRed() 
+							|| board[i + 1][c].isBlack()) {
+							board[i][c].setRed(true);	
+							changeTurn();
+							return i;
+						}
+					}
+				} else if (playerTurn == 2) {
+					for (int i = r; i < SIX; i++) {
+						if (i == FIVE || board[i + 1][c].isRed() 
+							|| board[i + 1][c].isBlack()) {
+							board[i][c].setBlack(true);
+							// add is valid move here
+							changeTurn();
+							return i;
+						}
+					}				
 			}
+			}
+			
 		}
 		return -1;
 		
@@ -462,6 +484,42 @@ public class Game {
 
     }
 	
+	public int getDiagonalConnects(){
+		for (int r = row -1; r > 0; r--) {
+			for (int c = col-1; c > 0; c--) {
+			
+				if (r + THREE < SIX && c - THREE >= 0) {
+					if (board[r][c].isRed()) {
+						if (board[r + 1][c - 1].isRed()) {
+							if (board[r + 2][c - 2].isRed()) {
+								if (board[r + THREE][c - THREE].isBlack() == false) {
+
+									return c - 3;
+								}
+							}
+						}
+					}
+				}
+
+				//Red Diagonal Left
+				if (r + THREE < SIX && c + THREE < SEVEN) {
+					if (board[r][c].isRed()) {
+						if (board[r + 1][c + 1].isRed()) {
+							if (board[r + 2][c + 2].isRed()) {
+								if (board[r + THREE][c + THREE].isBlack() == false) {
+
+									return c + 3;
+								}
+							}
+						}
+					}
+				}
+				
+			}
+		}
+		return 2;
+	}
+	
 	/**
 	 * get Valid move
 	 * 
@@ -470,7 +528,10 @@ public class Game {
 	public final int isValidMove() {
 		if(getVerticalConnects() == 0){
 			if(getHorizontalConnects() == 1){
-				return getRandom();
+				if(getDiagonalConnects() == 2){
+					return getRandom();
+				}
+				return getDiagonalConnects();
 			}
 			return getHorizontalConnects();
 		}

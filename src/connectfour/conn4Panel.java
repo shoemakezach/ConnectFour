@@ -533,6 +533,11 @@ public class conn4Panel extends JPanel {
 							int valid = game.isValidMove();
 							animation(game.setPiece(0, valid), valid);
 						}
+						if(game.type == GameType.OnePlayer && game.level == LevelDifficulty.Hard){
+							
+							int valid1 = game.isValidMove();
+							animation(game.setPiece(0, valid1), valid1);
+						}
 
 					}
 
