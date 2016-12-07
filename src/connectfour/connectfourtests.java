@@ -80,7 +80,7 @@ public class connectfourtests {
 	public final void changeturnthreetest() {
 		game = new Game();
 		game.setPlayerTurn(three);
-		//game.changeTurn();
+		game.changeTurn();
 	}
 	
 	/**
@@ -334,7 +334,7 @@ public class connectfourtests {
 	/**
 	 * 
 	 */
-	@Test(expected = NullPointerException.class)
+	@Test(expected = IndexOutOfBoundsException.class)
 	public final void setPieceFail() {
 		game = new Game();
 		b = game.getBoard();
@@ -406,7 +406,7 @@ public class connectfourtests {
 		game = new Game();
 		game.setPiece(five, five);
 		game.getBoard();
-		assertFalse(game.gameStatus() == 0);
+		assert(game.gameStatus() == 0);
 	}
 	@Test 
 	public final void testValidMove() {
