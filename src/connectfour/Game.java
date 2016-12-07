@@ -424,11 +424,12 @@ public class Game {
 						return c;
 
 					}
-
 				}
 			}
+
 		}
 		return 0;
+
 	}
 
 	public int getHorizontalConnects() {
@@ -436,7 +437,7 @@ public class Game {
 			for (int c = col - 1; c > 0; c--) {
 
 				if (c - 2 > 0) {
-					if (board[r][c].isRed() && board[r - 3][c].isBlack() == false && board[r][c - 2].isRed()
+					if (board[r][c].isRed() && board[r][c - 2].isRed() && board[r][c - 1].isRed()
 							&& board[r][c - THREE].isBlack() == false) {
 						return c - 3;
 					}
