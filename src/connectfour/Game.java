@@ -367,38 +367,21 @@ public class Game {
 				}
 
 				// Black Diagonal Right
-				if (r + THREE < SIX && c - THREE >= 0) {
-					if (board[r][c].isBlack()) {
-						if (board[r + 1][c - 1].isBlack()) {
-							if (board[r + 2][c - 2].isBlack()) {
-								if (board[r + THREE][c - THREE].isBlack()) {
+				if (r + THREE < SIX && c - THREE >= 0 && board[r][c].isBlack() && board[r + 1][c - 1].isBlack()
+						&& board[r + THREE][c - THREE].isBlack()) {
+					blackWin = blackWin + 1;
+					return 2;
 
-									System.out.println(playerTurn + " Won!");
-									blackWin = blackWin + 1;
-									return 2;
-								}
-							}
-						}
-					}
 				}
 
 				// Black Diagonal Left
-				if (r + THREE < SIX && c + THREE < SEVEN) {
-					if (board[r][c].isBlack()) {
-						if (board[r + 1][c + 1].isBlack()) {
-							if (board[r + 2][c + 2].isBlack()) {
-								if (board[r + THREE][c + THREE].isBlack()) {
-
-									System.out.println(playerTurn + " Won!");
-									blackWin = blackWin + 1;
-									return 2;
-								}
-							}
-						}
-					}
+				if (r + THREE < SIX && c + THREE < SEVEN && board[r][c].isBlack() && board[r + 1][c + 1].isBlack()
+						&& board[r + 2][c + 2].isBlack() && board[r + THREE][c + THREE].isBlack()) {
+					blackWin = blackWin + 1;
+					return 2;
 				}
-
 			}
+
 		}
 		return 0;
 	}
@@ -439,6 +422,7 @@ public class Game {
 				if (c - 2 > 0) {
 					if (board[r][c].isRed() && board[r][c - 2].isRed() && board[r][c - 1].isRed()
 							&& board[r][c - THREE].isBlack() == false) {
+
 						return c - 3;
 					}
 					if (c < 6) {
@@ -459,34 +443,18 @@ public class Game {
 		for (int r = row - 1; r > 0; r--) {
 			for (int c = col - 1; c > 0; c--) {
 
-				if (r + THREE < SIX && c - THREE >= 0) {
-					if (board[r][c].isRed()) {
-						if (board[r + 1][c - 1].isRed()) {
-							if (board[r + 2][c - 2].isRed()) {
-								if (board[r + THREE][c - THREE].isBlack() == false) {
-
-									return c - 3;
-								}
-							}
-						}
-					}
+				if (r + THREE < SIX && c - THREE >= 0 && board[r][c].isRed() && board[r + 1][c - 1].isRed()
+						&& board[r + 2][c - 2].isRed() && board[r + THREE][c - THREE].isBlack() == false) {
+					return c - 3;
 				}
 
 				// Red Diagonal Left
-				if (r + THREE < SIX && c + THREE < SEVEN) {
-					if (board[r][c].isRed()) {
-						if (board[r + 1][c + 1].isRed()) {
-							if (board[r + 2][c + 2].isRed()) {
-								if (board[r + THREE][c + THREE].isBlack() == false) {
-
-									return c + 3;
-								}
-							}
-						}
-					}
+				if (r + THREE < SIX && c + THREE < SEVEN && board[r][c].isRed() && board[r + 1][c + 1].isRed()
+						&& board[r + 2][c + 2].isRed() && board[r + THREE][c + THREE].isBlack() == false) {
+					return c + 3;
 				}
-
 			}
+
 		}
 		return 2;
 	}
