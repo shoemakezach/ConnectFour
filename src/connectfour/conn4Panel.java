@@ -82,7 +82,7 @@ public class conn4Panel extends JPanel {
 	/** a temporary integer for column. */
 	private int tempC;
 	/** Returns a true or false for is clicked. */
-	private boolean isClicked;
+	public boolean isClicked;
 	/**set a new game for the player. */
 	private Game game = new Game();
 	/** Label for player one. */
@@ -333,8 +333,8 @@ public class conn4Panel extends JPanel {
 		reset.setText("NEW GAME");
 		reset.setBackground(Color.GREEN);
 		reset.setPreferredSize(new Dimension(TWENTY, TWENTY));
-		
-		
+
+
 		center.add(reset);
 		center.add(blk1);
 		center.add(redWin);
@@ -448,6 +448,7 @@ public class conn4Panel extends JPanel {
 				for (int r = 0; r < SIX; r++) {
 					for (int c = 0; c < SEVEN; c++) {
 						if(game.getBoard()[r][c].isRed()) {
+
 							if("red" == (String)color.getSelectedItem()) {
 								setRed(rED);
 								setRED(rED);
@@ -481,7 +482,7 @@ public class conn4Panel extends JPanel {
 				}
 				displayBoard(); 
 			}
-			
+
 			if (reset == e.getSource()) {
 				game.newGame();
 			}
@@ -534,7 +535,7 @@ public class conn4Panel extends JPanel {
 							animation(game.setPiece(0, valid), valid);
 						}
 						if(game.type == GameType.OnePlayer && game.level == LevelDifficulty.Hard){
-							
+
 							int valid1 = game.isValidMove();
 							animation(game.setPiece(0, valid1), valid1);
 						}
@@ -543,7 +544,7 @@ public class conn4Panel extends JPanel {
 
 				}
 			}
-			
+
 			displayBoard();
 
 			if (game.gameStatus() == 1) {
@@ -560,7 +561,7 @@ public class conn4Panel extends JPanel {
 				displayBoard();
 				return;
 			}
-			
+
 
 
 
@@ -592,60 +593,93 @@ public class conn4Panel extends JPanel {
 			// TODO Auto-generated method stub
 
 		}
-	}
 
-	/**
-	 * Setter for the clicked method. 
-	 * 
-	 * @param clicked parameter that sets the clicked action. 
-	 */
-	public final void setClicked(final boolean clicked) {
-		this.isClicked = clicked;
-	}
-	/**
-	 * Creates an animation for pieces being dropped in 
-	 * 
-	 * @param rownum is the row the piece should end up in
-	 * @param colnum is the column the piece should 
-	 */
-	public void animation(int rownum, int colnum){
-		if (rownum == -1){
-			System.out.println("Not Valid Move");
-			return;
+
+		/**
+		 * Setter for the clicked method. 
+		 * 
+		 * @param clicked parameter that sets the clicked action. 
+		 */
+		public final void setClicked(final boolean clicked) {
+			isClicked = clicked;
 		}
-		if (game.getPlayerTurn() == 1)
-		{
-			for (int i = 0; i<=rownum;i++)
+		/**
+		 * Creates an animation for pieces being dropped in 
+		 * 
+		 * @param rownum is the row the piece should end up in
+		 * @param colnum is the column the piece should 
+		 */
+		public void animation(int rownum, int colnum){
+			if (rownum == -1){
+				System.out.println("Not Valid Move");
+				return;
+			}
+			if (game.getPlayerTurn() == 1)
 			{
-				if ( i != 0)
-					board[i-1][colnum].setIcon(new ImageIcon(bLANK));
-				board[i][colnum].setIcon(new ImageIcon(rED));
-				System.out.println("1image set at: "+ i +", "+colnum);
-				try {
-					Thread.sleep(50);
-					
-				} catch (InterruptedException e) {
-					e.printStackTrace();
+				for (int i = 0; i<=rownum;i++)
+				{
+					if ( i != 0)
+						game.board[i-1][colnum].setBlack(false);
+					game.board[i][colnum].setBlack(true);
+					System.out.println("1image set at: "+ i +", "+colnum);
+					try {
+						Thread.sleep(50);
+
+					} catch (InterruptedException e) {
+						e.printStackTrace();
+					}
 				}
 			}
-		}
-		if (game.getPlayerTurn() == 2)
-		{
-			for (int i = 0; i<rownum;i++)
+			if (game.getPlayerTurn() == 2)
 			{
-				if ( i != 0){
-				//board[i+1][colnum].setIcon(new ImageIcon(bLANK));
-				board[i][colnum].setIcon(new ImageIcon(rED));
-			
-				System.out.println("2image set at: "+ i +", "+colnum);
-				}
-				try {
-					Thread.sleep(50);
-				} catch (InterruptedException e) {
-					e.printStackTrace();
+				for (int i = 0; i<rownum;i++)
+				{
+					if ( i != 0){
+						game.board[i][colnum].setRed(true);
+
+						if(game.getBoard()[i][colnum].isRed()) {
+
+							if("red" == (String)color.getSelectedItem()) {
+								setRed(rED);
+								setRED(rED);
+							}
+							if("green" == (String)color.getSelectedItem()) {
+								setRed(gREEN);
+								setRED(gREEN); 
+							}
+							if("pink" == (String)color.getSelectedItem()) {
+								setRed(pINK);
+								setRED(pINK); 
+
+							}
+							if("orange" == (String)color.getSelectedItem()) {
+								setRed(oRANGE);
+								setRED(oRANGE); 
+
+							}
+							if("blue" == (String)color.getSelectedItem()) {
+								setRed(bLUE);
+								setRED(bLUE); 
+
+							}
+							if("star" == (String)color.getSelectedItem()) {
+								setRed(sTAR);
+								setRED(sTAR); 
+
+							}
+						}
+						displayBoard();
+						game.board[i][colnum].setRed(false);
+						System.out.println("2image set at: "+ i +", "+colnum);
+					}
+					try {
+						Thread.sleep(50);
+					} catch (InterruptedException e) {
+						e.printStackTrace();
+					}
 				}
 			}
-		}
 
+		}
 	}
 }
