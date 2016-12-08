@@ -36,7 +36,7 @@ public class Game {
 	/** A constant for a number. */
 	public static final int SEVEN = 7;
 	/** A constant for a number. */
-	private static final int CONNECT_FOUR_ROWS = 6;
+	//private static final int CONNECT_FOUR_ROWS = 6;
 	/** A type for the game. */
 	private GameType type;
 	/** A level of difficulty. */

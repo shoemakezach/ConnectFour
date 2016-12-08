@@ -5,7 +5,7 @@ package connectfour;
  * @author Zach Shoemake, Chris Gonzales, Zach Hopman
  * 
  * 
- *@version 10/09/16
+ * @version 12/07/16
  */
 public class Cell {
 
