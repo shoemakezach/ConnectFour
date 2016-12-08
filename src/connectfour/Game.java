@@ -399,13 +399,15 @@ public class Game {
 			for (int c = col - 1; c > 0; c--) {
 
 				if (c - 2 > 0) {
-					if (board[r][c].isRed() && board[r][c - 2].isRed() 
-							&& board[r][c - 1].isRed()
+					if (board[r][c].isRed() && board[r][c - 1].isRed() 
+							&& board[r][c - 2].isRed()
 							&& !board[r][c - THREE].isBlack()) {
 						return c - THREE;
 					}
 					if (c < SIX) {
-						if (!board[r][c + 1].isBlack()) {
+						if (board[r][c].isRed() && board[r][c - 1].isRed() 
+								&& board[r][c - 2].isRed()
+								&& !board[r][c + 1].isBlack()) {
 							return c + 1;
 						}
 					}

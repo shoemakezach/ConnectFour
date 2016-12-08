@@ -222,10 +222,69 @@ public class connectfourtests {
 		game.setPiece(one, four);
 		game.setPiece(one, three);
 		game.setPiece(one, three);
+		b = game.getBoard();
+		game.gameStatus();
+		assertTrue(game.getHorizontalConnects() == 2);
+	}
+	
+	/**
+	 * 
+	 */
+	@Test
+	public final void redwintest5() {
+		game = new Game();
+		game.setPiece(one, five);
+		game.setPiece(one, five);
+		game.setPiece(one, four);
+		game.setPiece(one, four);
+		game.setPiece(one, three);
 		game.setPiece(one, two);
 		b = game.getBoard();
 		game.gameStatus();
-		assertTrue(game.getRedWin() == 1);
+		assertTrue(game.getHorizontalConnects() == 6);
+	}
+	
+	/**
+	 * 
+	 */
+	@Test
+	public final void redwintest6() {
+		game = new Game();
+		game.setPiece(one, five);
+		game.setPiece(one, five);
+		game.setPiece(one, four);
+		game.setPiece(one, four);
+		b = game.getBoard();
+		game.gameStatus();
+		assertTrue(game.getHorizontalConnects() == 1);
+	}
+	
+	/**
+	 * 
+	 */
+	@Test
+	public final void redwintest7() {
+		game = new Game();
+		game.setPiece(one, five);
+		game.setPiece(one, 6);
+		game.setPiece(one, four);
+		game.setPiece(one, four);
+		game.setPiece(one, three);
+		game.setPiece(one, two);
+		game.gameStatus();
+		assertTrue(game.getHorizontalConnects() == 1);
+	}
+	
+	/**
+	 * 
+	 */
+	@Test
+	public final void redwintest8() {
+		game = new Game();
+		game.setPiece(one, five);
+		game.setPiece(one, 6);
+		game.gameStatus();
+		assertTrue(game.getHorizontalConnects() == 1);
 	}
 	
 	/**
@@ -236,6 +295,22 @@ public class connectfourtests {
 		game = new Game();
 		game.setPiece(one, five);
 		game.setPiece(one, four);
+		game.setPiece(one, five);
+		game.setPiece(one, three);
+		game.gameStatus();
+		assertTrue(game.getRedWin() == 0);
+	}
+	
+	/**
+	 * 
+	 */
+	@Test
+	public final void redwintest2() {
+		game = new Game();
+		game.setPiece(one, five);
+		game.setPiece(one, four);
+		game.setPiece(one, five);
+		game.setPiece(one, three);
 		game.setPiece(one, five);
 		game.setPiece(one, three);
 		game.gameStatus();
