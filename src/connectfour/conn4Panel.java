@@ -634,9 +634,9 @@ public class conn4Panel extends JPanel {
 			if (game.getPlayerTurn() == 1) {
 				for (int i = 0; i <= rownum; i++) {
 					if (i != 0) {
-						game.board[i - 1][colnum].setBlack(false);
+						//game.setBoard[game.getBoard()[i - 1][colnum].setBlack(false);
 					}
-					game.board[i][colnum].setBlack(true);
+					//game.board[i][colnum].setBlack(true);
 					System.out.println("1image set at: " + i + ", " + colnum);
 					try {
 						Thread.sleep(FIFTY);
@@ -649,7 +649,7 @@ public class conn4Panel extends JPanel {
 			if (game.getPlayerTurn() == 2) {
 				for (int i = 0; i < rownum; i++) {
 					if (i != 0) {
-						game.board[i][colnum].setRed(true);
+					//	game.board[i][colnum].setRed(true);
 
 						if (game.getBoard()[i][colnum].isRed()) {
 
@@ -683,7 +683,7 @@ public class conn4Panel extends JPanel {
 							}
 						}
 						displayBoard();
-						game.board[i][colnum].setRed(false);
+						//game.board[i][colnum].setRed(false);
 						System.out.println("2image set at: " + i 
 								+ ", " + colnum);
 					}
