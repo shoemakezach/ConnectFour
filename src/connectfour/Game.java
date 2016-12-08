@@ -37,7 +37,12 @@ public class Game {
 	/** A constant for a number. */
 	public static final int SEVEN = 7;
 
-
+	/** A constant for a number. */
+	//private static final int CONNECT_FOUR_ROWS = 6;
+	/** A type for the game. */
+	private GameType type;
+	/** A level of difficulty. */
+	private LevelDifficulty level;
 	/**
 	 * This method gets a type. 
 	 * @return returns the current type. 
@@ -66,13 +71,11 @@ public class Game {
 
 	private static final int CONNECT_FOUR_ROWS = 6;
 
-	/** 
+	/**
 	 * 
+	 *
+	 * @param nlevel
 	 */
-	public GameType type;
-	
-	public LevelDifficulty level;
-
 	public final void setLevel(final LevelDifficulty nlevel) {
 		this.level = nlevel;
 	}

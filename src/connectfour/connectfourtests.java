@@ -338,7 +338,7 @@ public class connectfourtests {
 	@Test(expected = IndexOutOfBoundsException.class)
 	public final void setPieceFail() {
 		game = new Game();
-		game.type = GameType.TwoPlayer;
+		game.setType(GameType.TwoPlayer);
 		b = game.getBoard();
 		game.setPiece(one, zero);
 		game.setPiece(one, zero);

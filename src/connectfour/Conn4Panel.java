@@ -1,17 +1,28 @@
 package connectfour;
-
+/**
+ * 
+ * @author Zach Shoemake, Chris Gonzales, Zach Hopman
+ * 
+ * 
+ * @version 12/07/16
+ */
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.Font;
+//import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.Image;
-import java.awt.event.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener; 
+import java.awt.event.MouseListener;
+import java.awt.event.MouseEvent;
+
+
 
 import java.io.File;
 import java.io.IOException;
-import java.util.concurrent.ThreadLocalRandom;
-import java.util.logging.Level;
+//import java.util.concurrent.ThreadLocalRandom;
+//import java.util.logging.Level;
 
 import javax.imageio.ImageIO;
 
@@ -29,7 +40,7 @@ import javax.swing.JPanel;
  *
  */
 @SuppressWarnings("serial")
-public class conn4Panel extends JPanel {
+public class Conn4Panel extends JPanel {
 	/** the cells on the board. */
 	private JButton[][] board;
 
@@ -85,7 +96,7 @@ public class conn4Panel extends JPanel {
 	/** a temporary integer for column. */
 	private int tempC;
 	/** Returns a true or false for is clicked. */
-	private boolean isClicked;
+	private boolean isClicked; 
 	/**set a new game for the player. */
 	private Game game = new Game();
 	/** Label for player one. */
@@ -301,12 +312,12 @@ public class conn4Panel extends JPanel {
 	/**
 	 * 
 	 */
-	public conn4Panel() {
+	public Conn4Panel() {
 		setName(JOptionPane.showInputDialog("What is your name?"));
 
 		JPanel center = new JPanel();
 
-		isClicked = false;
+		setClicked(false);
 
 		// create the board
 		center.setLayout(new GridLayout(EIGHT, SEVEN));
@@ -436,6 +447,20 @@ public class conn4Panel extends JPanel {
 		}
 
 
+	}
+	/**
+	 * is a true false for clicked. 
+	 * @return returns a true or false. 
+	 */
+	public final boolean isClicked() {
+		return isClicked;
+	}
+	/**
+	 * is a setter for clicked. 
+	 * @param nisClicked this is the setter. 
+	 */
+	public final void setClicked(final boolean nisClicked) {
+		this.isClicked = nisClicked;
 	}
 
 	/**
@@ -635,9 +660,10 @@ public class conn4Panel extends JPanel {
 			}
 			if (game.getPlayerTurn() == 1) {
 				for (int i = 0; i <= rownum; i++) {
-					if (i != 0) {
-						//game.setBoard[game.getBoard()[i - 1][colnum].setBlack(false);
-					}
+//					if (i != 0) {
+//						//game.setBoard[game.getBoard()
+//						//[i - 1][colnum].setBlack(false);
+//					}
 					//game.board[i][colnum].setBlack(true);
 					System.out.println("1image set at: " + i + ", " + colnum);
 					try {
