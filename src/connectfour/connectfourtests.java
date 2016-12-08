@@ -231,6 +231,23 @@ public class connectfourtests {
 	 * 
 	 */
 	@Test
+	public final void redwintest9() {
+		game = new Game();
+		game.setPiece(one, five);
+		game.setPiece(one, five);
+		game.setPiece(one, four);
+		game.setPiece(one, four);
+		game.setPiece(one, three);
+		game.setPiece(one, three);
+		b = game.getBoard();
+		game.gameStatus();
+		assertTrue(game.isValidMove() == 2);
+	}
+	
+	/**
+	 * 
+	 */
+	@Test
 	public final void redwintest5() {
 		game = new Game();
 		game.setPiece(one, five);
