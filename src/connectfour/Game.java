@@ -10,72 +10,65 @@ import java.util.concurrent.ThreadLocalRandom;
  */
 public class Game {
 
-	/**
-	 * a certain cell on the board.
-	 */
+	/** a certain cell on the board. */
 	public Cell[][] board;
-
-	/**
-	 * states who's turn it is.
-	 */
+	/** A counter for whos turn it is. */
 	private int playerTurn = 1;
-	/**
-	 * 
-	 */
+	/** A constant for a number.  */
 	private int row = SIX;
-	/**
-	 * 
-	 */
+	/** A constant for a number. */
 	private int col = SEVEN;
-	/**
-	 * 
-	 */
-	// private Boolean gameOver = false;
-	/**
-	 * 
-	 */
-	// private Boolean validMove = true;
-	/**
-	 * 
-	 */
+	/** a certain cell on the board. */
 	private boolean isRed;
-	/**
-	 * 
-	 */
+	/** a certain cell on the board. */
 	private boolean isBlack;
-	/**
-	 * 
-	 */
+	/** a certain cell on the board. */
 	private int blackWin = 0;
-	/**
-	 * 
-	 */
+	/** a certain cell on the board. */
 	private int redWin = 0;
-
-	/**
-	 * 
-	 */
+	/** A constant for a number. */
 	public static final int THREE = 3;
-	/**
-	 * 
-	 */
+	/** A constant for a number. */
 	public static final int FOUR = 4;
+	/** A constant for a number. */
+	public static final int FIVE = 5;
+	/** A constant for a number. */
+	public static final int SIX = 6;
+	/** A constant for a number. */
+	public static final int SEVEN = 7;
+	/** A constant for a number. */
+	private static final int CONNECT_FOUR_ROWS = 6;
+	/** A type for the game. */
+	private GameType type;
+	/** A level of difficulty. */
+	private LevelDifficulty level;
 
 	/**
-	 * 
+	 * This method gets a type. 
+	 * @return returns the current type. 
 	 */
-	public static final int FIVE = 5;
+	public final GameType getType() {
+		return type;
+	}
 	/**
-	 * 
+	 * This method sets the type. 
+	 * @param ntype the type of game mode. 
 	 */
-	public static final int SIX = 6;
+	public final void setType(final GameType ntype) {
+		this.type = ntype;
+	}
 	/**
-	 * 
+	 * This method gets the level. 
+	 * @return the level. 
 	 */
-	public static final int SEVEN = 7;
+	public final LevelDifficulty getLevel() {
+		return level;
+	}
 	/**
-	 * 
+	 * This method sets the level. 
+	 * @param nlevel this is the selected level. 
 	 */
+<<<<<<< HEAD
 	private static final int CONNECT_FOUR_ROWS = 6;
 
 	/** 
@@ -83,6 +76,11 @@ public class Game {
 	 */
 	public GameType type;
 	public LevelDifficulty level;
+=======
+	public final void setLevel(final LevelDifficulty nlevel) {
+		this.level = nlevel;
+	}
+>>>>>>> dfe7f1f7f03e923e7f106dc21db082ee2268b48e
 
 	/**
 	 * 
@@ -90,8 +88,10 @@ public class Game {
 	 * 
 	 */
 	public Game() {
-		type = GameType.OnePlayer;
-		level = LevelDifficulty.Easy;
+		setType(GameType.OnePlayer);
+		//type = GameType.OnePlayer;
+		setLevel(LevelDifficulty.Easy);
+		//level = LevelDifficulty.Easy;
 		board = new Cell[row][col];
 		newGame();
 
@@ -130,6 +130,7 @@ public class Game {
 	 *            uses the row for parameter.
 	 * @param c
 	 *            uses the column for parameter.
+	 * @return returns the final pieces place. 
 	 */
 	public final int setPiece(final int r, final int c) {
 
@@ -139,7 +140,8 @@ public class Game {
 				throw new IndexOutOfBoundsException();
 			} else if (playerTurn == 1) {
 				for (int i = r; i < SIX; i++) {
-					if (i == FIVE || board[i + 1][c].isRed() || board[i + 1][c].isBlack()) {
+					if (i == FIVE || board[i + 1][c].isRed() 
+							|| board[i + 1][c].isBlack()) {
 						board[i][c].setRed(true);
 						changeTurn();
 						return i;
@@ -147,7 +149,8 @@ public class Game {
 				}
 			} else if (playerTurn == 2) {
 				for (int i = r; i < SIX; i++) {
-					if (i == FIVE || board[i + 1][c].isRed() || board[i + 1][c].isBlack()) {
+					if (i == FIVE || board[i + 1][c].isRed() 
+							|| board[i + 1][c].isBlack()) {
 						board[i][c].setBlack(true);
 						changeTurn();
 						return i;
@@ -156,7 +159,7 @@ public class Game {
 			}
 		}
 		if (type == GameType.OnePlayer) {
-//			if (level == LevelDifficulty.Easy) {
+
 				if (playerTurn == 1) {
 					if (board[r][c].isBlack() || board[r][c].isRed()) { // throw
 																		// error
@@ -164,7 +167,8 @@ public class Game {
 						throw new IndexOutOfBoundsException();
 					}
 					for (int i = r; i < SIX; i++) {
-						if (i == FIVE || board[i + 1][c].isRed() || board[i + 1][c].isBlack()) {
+						if (i == FIVE || board[i + 1][c].isRed() 
+								|| board[i + 1][c].isBlack()) {
 							board[i][c].setRed(true);
 							System.out.println("Player 1");
 							changeTurn();
@@ -179,7 +183,8 @@ public class Game {
 						return r;
 					}
 					for (int i = r; i < SIX; i++) {
-						if (i == FIVE || board[i + 1][c].isRed() || board[i + 1][c].isBlack()) {
+						if (i == FIVE || board[i + 1][c].isRed() 
+								|| board[i + 1][c].isBlack()) {
 							board[i][c].setBlack(true);
 							System.out.println("Player 2");
 							changeTurn();
@@ -187,55 +192,7 @@ public class Game {
 						}
 					}
 				}
-//			}
-//			if (level == LevelDifficulty.Medium) {
-//				if (board[r][c].isBlack() || board[r][c].isRed()) { // throw
-//																	// error
-//																	// here
-//					throw new NullPointerException();
-//				} else if (playerTurn == 1) {
-//					for (int i = r; i < SIX; i++) {
-//						if (i == FIVE || board[i + 1][c].isRed() || board[i + 1][c].isBlack()) {
-//							board[i][c].setRed(true);
-//							changeTurn();
-//							return i;
-//						}
-//					}
-//				} else if (playerTurn == 2) {
-//					for (int i = r; i < SIX; i++) {
-//						if (i == FIVE || board[i + 1][c].isRed() || board[i + 1][c].isBlack()) {
-//							board[i][c].setBlack(true);
-//							// add is valid move here
-//							changeTurn();
-//							return i;
-//						}
-//					}
-//				}
-//			}
-//			if (level == LevelDifficulty.Hard) {
-//				if (board[r][c].isBlack() || board[r][c].isRed()) { // throw
-//																	// error
-//																	// here
-//					throw new NullPointerException();
-//				} else if (playerTurn == 1) {
-//					for (int i = r; i < SIX; i++) {
-//						if (i == FIVE || board[i + 1][c].isRed() || board[i + 1][c].isBlack()) {
-//							board[i][c].setRed(true);
-//							changeTurn();
-//							return i;
-//						}
-//					}
-//				} else if (playerTurn == 2) {
-//					for (int i = r; i < SIX; i++) {
-//						if (i == FIVE || board[i + 1][c].isRed() || board[i + 1][c].isBlack()) {
-//							board[i][c].setBlack(true);
-//							// add is valid move here
-//							changeTurn();
-//							return i;
-//						}
-//					}
-//				}
-//			}
+
 
 		}
 		return -1;
@@ -261,9 +218,10 @@ public class Game {
 	 * 
 	 * Randomizes number.
 	 * 
+	 * @return returns a random number. 
 	 */
 	public final int getRandom() {
-		int rand1 = ThreadLocalRandom.current().nextInt(0, 6);
+		int rand1 = ThreadLocalRandom.current().nextInt(0, SIX);
 		return rand1;
 	}
 
@@ -371,43 +329,59 @@ public class Game {
 				}
 
 				// Black Diagonal Right
-				if (r + THREE < SIX && c - THREE >= 0 && board[r][c].isBlack() && board[r + 1][c - 1].isBlack()
-						&& board[r + THREE][c - THREE].isBlack()) {
-					blackWin = blackWin + 1;
-					return 2;
+				if (r + THREE < SIX && c - THREE >= 0) {
+					if (board[r][c].isBlack()) {
+						if (board[r + 1][c - 1].isBlack()) {
+							if (board[r + 2][c - 2].isBlack()) {
+								if (board[r + THREE][c - THREE].isBlack()) {
 
+									System.out.println(playerTurn + " Won!");
+									blackWin = blackWin + 1;
+									return 2;
+								}
+							}
+						}
+					}
 				}
 
 				// Black Diagonal Left
-				if (r + THREE < SIX && c + THREE < SEVEN && board[r][c].isBlack() && board[r + 1][c + 1].isBlack()
-						&& board[r + 2][c + 2].isBlack() && board[r + THREE][c + THREE].isBlack()) {
-					blackWin = blackWin + 1;
-					return 2;
-				}
-			}
+				if (r + THREE < SIX && c + THREE < SEVEN) {
+					if (board[r][c].isBlack()) {
+						if (board[r + 1][c + 1].isBlack()) {
+							if (board[r + 2][c + 2].isBlack()) {
+								if (board[r + THREE][c + THREE].isBlack()) {
 
+									System.out.println(playerTurn + " Won!");
+									blackWin = blackWin + 1;
+									return 2;
+								}
+							}
+						}
+					}
+				}
+
+			}
 		}
 		return 0;
 	}
 
 	/**
-	 * Get length of connect in a specific column
+	 * Get length of connect in a specific column. 
 	 * 
 	 * @param column
 	 * @param player
 	 * @param gameBoard
-	 * @return
+	 * @return returns a vertical move. 
 	 */
-
-	// Morph into get valid move method
-	public int getVerticalConnects() {
+	public final int getVerticalConnects() {
 		for (int c = col - 1; c > 0; c--) {
 			for (int r = row - 1; r > 0; r--) {
 
-				if (r - 3 > 0) {
+				if (r - THREE > 0) {
 
-					if (board[r][c].isRed() && board[r - 1][c].isRed() && board[r - 2][c].isRed()
-							&& board[r - 3][c].isBlack() == false) {
+					if (board[r][c].isRed() && board[r - 1][c].isRed() 
+							&& board[r - 2][c].isRed()
+							&& !board[r - THREE][c].isBlack()) {
 						return c;
 
 					}
@@ -419,18 +393,22 @@ public class Game {
 
 	}
 
-	public int getHorizontalConnects() {
+	/**
+	 * This method gets the horizontal move. 
+	 * @return returns the move. 
+	 */
+	public final int getHorizontalConnects() {
 		for (int r = row - 1; r > 0; r--) {
 			for (int c = col - 1; c > 0; c--) {
 
 				if (c - 2 > 0) {
-					if (board[r][c].isRed() && board[r][c - 2].isRed() && board[r][c - 1].isRed()
-							&& board[r][c - THREE].isBlack() == false) {
-
-						return c - 3;
+					if (board[r][c].isRed() && board[r][c - 2].isRed() 
+							&& board[r][c - 1].isRed()
+							&& !board[r][c - THREE].isBlack()) {
+						return c - THREE;
 					}
-					if (c < 6) {
-						if (board[r][c + 1].isBlack() == false) {
+					if (c < SIX) {
+						if (!board[r][c + 1].isBlack()) {
 							return c + 1;
 						}
 					}
@@ -443,28 +421,48 @@ public class Game {
 
 	}
 
-	public int getDiagonalConnects() {
+	/**
+	 * This method returns the diagonal move. 
+	 * @return returns the diagonal move. 
+	 */
+	public final int getDiagonalConnects() {
 		for (int r = row - 1; r > 0; r--) {
 			for (int c = col - 1; c > 0; c--) {
 
-				if (r + THREE < SIX && c - THREE >= 0 && board[r][c].isRed() && board[r + 1][c - 1].isRed()
-						&& board[r + 2][c - 2].isRed() && board[r + THREE][c - THREE].isBlack() == false) {
-					return c - 3;
+				if (r + THREE < SIX && c - THREE >= 0) {
+					if (board[r][c].isRed()) {
+						if (board[r + 1][c - 1].isRed()) {
+							if (board[r + 2][c - 2].isRed()) {
+								if (!board[r + THREE][c - THREE].isBlack()) {
+
+									return c - THREE;
+								}
+							}
+						}
+					}
 				}
 
 				// Red Diagonal Left
-				if (r + THREE < SIX && c + THREE < SEVEN && board[r][c].isRed() && board[r + 1][c + 1].isRed()
-						&& board[r + 2][c + 2].isRed() && board[r + THREE][c + THREE].isBlack() == false) {
-					return c + 3;
-				}
-			}
+				if (r + THREE < SIX && c + THREE < SEVEN) {
+					if (board[r][c].isRed()) {
+						if (board[r + 1][c + 1].isRed()) {
+							if (board[r + 2][c + 2].isRed()) {
+								if (!board[r + THREE][c + THREE].isBlack()) {
 
+									return c + THREE;
+								}
+							}
+						}
+					}
+				}
+
+			}
 		}
 		return 2;
 	}
 
 	/**
-	 * get Valid move
+	 * get Valid move. 
 	 * 
 	 * @return returns a true or false for red.
 	 */

@@ -11,6 +11,7 @@ import java.awt.event.*;
 import java.io.File;
 import java.io.IOException;
 import java.util.concurrent.ThreadLocalRandom;
+import java.util.logging.Level;
 
 import javax.imageio.ImageIO;
 
@@ -42,6 +43,8 @@ public class conn4Panel extends JPanel {
 	public static final int EIGHT = 8;
 	/** constant for the number twenty. */
 	public static final int TWENTY = 20;
+	/** constant for the number fifty. */
+	public static final int FIFTY = 50;
 	/** constant for the number of the image size.*/
 	public static final int MAX_IMAGE_SIZE = 100;
 
@@ -82,7 +85,7 @@ public class conn4Panel extends JPanel {
 	/** a temporary integer for column. */
 	private int tempC;
 	/** Returns a true or false for is clicked. */
-	public boolean isClicked;
+	private boolean isClicked;
 	/**set a new game for the player. */
 	private Game game = new Game();
 	/** Label for player one. */
@@ -96,14 +99,17 @@ public class conn4Panel extends JPanel {
 	/** Label for the reset button. */
 	private JButton reset;
 
-	/** drop down box for difficulty */
+	/** drop down box for difficulty. */
 	private final JComboBox<String> difficulty;
-	private String[] opt = {"easy", "medium","hard"};
-	/** drop down box for game type */
+	/** The string for the mode for the player to choose from. */
+	private String[] opt = {"easy", "medium", "hard"};
+	/** drop down box for game type. */
 	private final JComboBox<String> oneOrTwo;
+	/** The string for the mode for the player to choose from. */
 	private String[] opt1 = {"one player", "two player"};
 	/** label to change the color of pieces. */
 	private final JComboBox<String> color; 
+	/** The string for the color for the player to express themselves. */
 	private String[] opt2 = {"red", "orange", "pink", "blue", 
 			"green", "star"}; 
 
@@ -447,32 +453,32 @@ public class conn4Panel extends JPanel {
 			if (color == e.getSource()) {
 				for (int r = 0; r < SIX; r++) {
 					for (int c = 0; c < SEVEN; c++) {
-						if(game.getBoard()[r][c].isRed()) {
+						if (game.getBoard()[r][c].isRed()) {
 
-							if("red" == (String)color.getSelectedItem()) {
+							if ("red" == (String) color.getSelectedItem()) {
 								setRed(rED);
 								setRED(rED);
 							}
-							if("green" == (String)color.getSelectedItem()) {
+							if ("green" == (String) color.getSelectedItem()) {
 								setRed(gREEN);
 								setRED(gREEN); 
 							}
-							if("pink" == (String)color.getSelectedItem()) {
+							if ("pink" == (String) color.getSelectedItem()) {
 								setRed(pINK);
 								setRED(pINK); 
 
 							}
-							if("orange" == (String)color.getSelectedItem()) {
+							if ("orange" == (String) color.getSelectedItem()) {
 								setRed(oRANGE);
 								setRED(oRANGE); 
 
 							}
-							if("blue" == (String)color.getSelectedItem()) {
+							if ("blue" == (String) color.getSelectedItem()) {
 								setRed(bLUE);
 								setRED(bLUE); 
 
 							}
-							if("star" == (String)color.getSelectedItem()) {
+							if ("star" == (String) color.getSelectedItem()) {
 								setRed(sTAR);
 								setRED(sTAR); 
 
@@ -487,32 +493,37 @@ public class conn4Panel extends JPanel {
 				game.newGame();
 			}
 
-			if(oneOrTwo == e.getSource()){
-				if("one player" == (String)oneOrTwo.getSelectedItem()){
-					game.type = GameType.OnePlayer;
+			if (oneOrTwo == e.getSource()) {
+				if ("one player" == (String) oneOrTwo.getSelectedItem()) {
+					game.setType(GameType.OnePlayer);
+					//game.type = GameType.OnePlayer;
 					game.setRedWin(0);
 					game.setBlackWin(0);
 					game.newGame();
 				}
-				if("two player" == (String)oneOrTwo.getSelectedItem()){
-					game.type = GameType.TwoPlayer;
+				if ("two player" == (String) oneOrTwo.getSelectedItem()) {
+					game.setType(GameType.TwoPlayer);
+					//game.type = GameType.TwoPlayer;
 					game.setRedWin(0);
 					game.setBlackWin(0);	
 					game.newGame();
 				}
 			}
 
-			if(difficulty == e.getSource()){
-				if("easy" == (String)difficulty.getSelectedItem()){
-					game.level = LevelDifficulty.Easy;
+			if (difficulty == e.getSource()) {
+				if ("easy" == (String) difficulty.getSelectedItem()) {
+					game.setLevel(LevelDifficulty.Easy);
+					//game.level = LevelDifficulty.Easy;
 					game.newGame();
 				}
-				if("medium" == (String)difficulty.getSelectedItem()){
-					game.level = LevelDifficulty.Medium;
+				if ("medium" == (String) difficulty.getSelectedItem()) {
+					game.setLevel(LevelDifficulty.Medium);
+					//game.level = LevelDifficulty.Medium;
 					game.newGame();
 				}
-				if("hard" == (String)difficulty.getSelectedItem()){
-					game.level = LevelDifficulty.Hard;
+				if ("hard" == (String) difficulty.getSelectedItem()) {
+					game.setLevel(LevelDifficulty.Hard);
+					//game.level = LevelDifficulty.Hard;
 					game.newGame();
 				}
 			}
@@ -520,21 +531,27 @@ public class conn4Panel extends JPanel {
 			for (int r = 0; r < SIX; r++) {
 				for (int c = 0; c < SEVEN; c++) {
 					if (board[r][c] == e.getSource()) {
-						System.out.println("Clicked" +r + ""+c);
+						System.out.println("Clicked" + r + "" + c);
 						setClicked(true);
 						animation(game.setPiece(0, c), c);
 						//move to Game Class**
 
-						if(game.type == GameType.OnePlayer && game.level == LevelDifficulty.Easy){
+						if (game.getType() == GameType.OnePlayer 
+								&& game.getLevel() 
+								== LevelDifficulty.Easy) {
 							int rand = game.getRandom();
 							animation(game.setPiece(0, rand), rand);
 						}
-						if(game.type == GameType.OnePlayer && game.level == LevelDifficulty.Medium){
+						if (game.getType() == GameType.OnePlayer 
+								&& game.getLevel()
+								== LevelDifficulty.Medium) {
 
 							int valid = game.isValidMove();
 							animation(game.setPiece(0, valid), valid);
 						}
-						if(game.type == GameType.OnePlayer && game.level == LevelDifficulty.Hard){
+						if (game.getType() == GameType.OnePlayer 
+								&& game.getLevel()
+								== LevelDifficulty.Hard) {
 
 							int valid1 = game.isValidMove();
 							animation(game.setPiece(0, valid1), valid1);
@@ -604,65 +621,62 @@ public class conn4Panel extends JPanel {
 			isClicked = clicked;
 		}
 		/**
-		 * Creates an animation for pieces being dropped in 
+		 * Creates an animation for pieces being dropped in.
 		 * 
 		 * @param rownum is the row the piece should end up in
 		 * @param colnum is the column the piece should 
 		 */
-		public void animation(int rownum, int colnum){
-			if (rownum == -1){
+		public void animation(final int rownum, final int colnum) {
+			if (rownum == -1) {
 				System.out.println("Not Valid Move");
 				return;
 			}
-			if (game.getPlayerTurn() == 1)
-			{
-				for (int i = 0; i<=rownum;i++)
-				{
-					if ( i != 0)
-						game.board[i-1][colnum].setBlack(false);
+			if (game.getPlayerTurn() == 1) {
+				for (int i = 0; i <= rownum; i++) {
+					if (i != 0) {
+						game.board[i - 1][colnum].setBlack(false);
+					}
 					game.board[i][colnum].setBlack(true);
-					System.out.println("1image set at: "+ i +", "+colnum);
+					System.out.println("1image set at: " + i + ", " + colnum);
 					try {
-						Thread.sleep(50);
+						Thread.sleep(FIFTY);
 
 					} catch (InterruptedException e) {
 						e.printStackTrace();
 					}
 				}
 			}
-			if (game.getPlayerTurn() == 2)
-			{
-				for (int i = 0; i<rownum;i++)
-				{
-					if ( i != 0){
+			if (game.getPlayerTurn() == 2) {
+				for (int i = 0; i < rownum; i++) {
+					if (i != 0) {
 						game.board[i][colnum].setRed(true);
 
-						if(game.getBoard()[i][colnum].isRed()) {
+						if (game.getBoard()[i][colnum].isRed()) {
 
-							if("red" == (String)color.getSelectedItem()) {
+							if ("red" == (String) color.getSelectedItem()) {
 								setRed(rED);
 								setRED(rED);
 							}
-							if("green" == (String)color.getSelectedItem()) {
+							if ("green" == (String) color.getSelectedItem()) {
 								setRed(gREEN);
 								setRED(gREEN); 
 							}
-							if("pink" == (String)color.getSelectedItem()) {
+							if ("pink" == (String) color.getSelectedItem()) {
 								setRed(pINK);
 								setRED(pINK); 
 
 							}
-							if("orange" == (String)color.getSelectedItem()) {
+							if ("orange" == (String) color.getSelectedItem()) {
 								setRed(oRANGE);
 								setRED(oRANGE); 
 
 							}
-							if("blue" == (String)color.getSelectedItem()) {
+							if ("blue" == (String) color.getSelectedItem()) {
 								setRed(bLUE);
 								setRED(bLUE); 
 
 							}
-							if("star" == (String)color.getSelectedItem()) {
+							if ("star" == (String) color.getSelectedItem()) {
 								setRed(sTAR);
 								setRED(sTAR); 
 
@@ -670,10 +684,11 @@ public class conn4Panel extends JPanel {
 						}
 						displayBoard();
 						game.board[i][colnum].setRed(false);
-						System.out.println("2image set at: "+ i +", "+colnum);
+						System.out.println("2image set at: " + i 
+								+ ", " + colnum);
 					}
 					try {
-						Thread.sleep(50);
+						Thread.sleep(FIFTY);
 					} catch (InterruptedException e) {
 						e.printStackTrace();
 					}

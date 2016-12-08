@@ -420,23 +420,23 @@ public class connectfourtests {
 		assertTrue(game.isValidMove() >= 0);
 	}
 	@Test
-	public final void testgetHorizontalConnects(){
+	public final void testgetHorizontalConnects() {
 		game = new Game();
 		assertTrue(game.getHorizontalConnects() >= 0);
 	}
 	@Test
-	public final void testgetVerticalConnects(){
+	public final void testgetVerticalConnects() {
 		game = new Game();
 		assertTrue(game.getVerticalConnects() >= 0);
 	}
 	@Test
-	public final void testIsred(){
+	public final void testIsred() {
 		game = new Game();
 		game.setRed(false);
 		assertTrue(game.isRed() == false);
 	}
 	@Test
-	public final void testIsblack(){
+	public final void testIsblack() {
 		game = new Game();
 		game.setblack(false);
 		assertTrue(game.isBlack() == false);
