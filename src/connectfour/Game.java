@@ -422,41 +422,41 @@ public class Game {
 	 * This method returns the diagonal move. 
 	 * @return returns the diagonal move. 
 	 */
-	public final int getDiagonalConnects() {
-		for (int r = row - 1; r > 0; r--) {
-			for (int c = col - 1; c > 0; c--) {
-
-				if (r + THREE < SIX && c - THREE >= 0) {
-					if (board[r][c].isRed()) {
-						if (board[r + 1][c - 1].isRed()) {
-							if (board[r + 2][c - 2].isRed()) {
-								if (!board[r + THREE][c - THREE].isBlack()) {
-
-									return c - THREE;
-								}
-							}
-						}
-					}
-				}
-
-				// Red Diagonal Left
-				if (r + THREE < SIX && c + THREE < SEVEN) {
-					if (board[r][c].isRed()) {
-						if (board[r + 1][c + 1].isRed()) {
-							if (board[r + 2][c + 2].isRed()) {
-								if (!board[r + THREE][c + THREE].isBlack()) {
-
-									return c + THREE;
-								}
-							}
-						}
-					}
-				}
-
-			}
-		}
-		return 2;
-	}
+//	public final int getDiagonalConnects() {
+//		for (int r = row - 1; r > 0; r--) {
+//			for (int c = col - 1; c > 0; c--) {
+//
+//				if (r + THREE < SIX && c - THREE >= 0) {
+//					if (board[r][c].isRed()) {
+//						if (board[r + 1][c - 1].isRed()) {
+//							if (board[r + 2][c - 2].isRed()) {
+//								if (!board[r + THREE][c - THREE].isBlack()) {
+//
+//									return c - THREE;
+//								}
+//							}
+//						}
+//					}
+//				}
+//
+//				// Red Diagonal Left
+//				if (r + THREE < SIX && c + THREE < SEVEN) {
+//					if (board[r][c].isRed()) {
+//						if (board[r + 1][c + 1].isRed()) {
+//							if (board[r + 2][c + 2].isRed()) {
+//								if (!board[r + THREE][c + THREE].isBlack()) {
+//
+//									return c + THREE;
+//								}
+//							}
+//						}
+//					}
+//				}
+//
+//			}
+//		}
+//		return 2;
+//	}
 
 	/**
 	 * get Valid move. 
@@ -466,10 +466,10 @@ public class Game {
 	public final int isValidMove() {
 		if (getVerticalConnects() == 0) {
 			if (getHorizontalConnects() == 1) {
-				if (getDiagonalConnects() == 2) {
+//				if (getDiagonalConnects() == 2) {
 					return getRandom();
-				}
-				return getDiagonalConnects();
+//				}
+//				return getDiagonalConnects();
 			}
 			return getHorizontalConnects();
 		}

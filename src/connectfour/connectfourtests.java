@@ -232,6 +232,20 @@ public class connectfourtests {
 	 * 
 	 */
 	@Test
+	public final void redwintest1() {
+		game = new Game();
+		game.setPiece(one, five);
+		game.setPiece(one, four);
+		game.setPiece(one, five);
+		game.setPiece(one, three);
+		game.gameStatus();
+		assertTrue(game.getRedWin() == 0);
+	}
+	
+	/**
+	 * 
+	 */
+	@Test
 	public final void blackvertiwintest() {
 		game = new Game();
 		game.setPiece(one, one);
@@ -244,6 +258,23 @@ public class connectfourtests {
 		game.setPiece(one, five);
 		b = game.getBoard();
 		assertTrue(game.gameStatus() == 2);
+	}
+	
+	/**
+	 * 
+	 */
+	@Test
+	public final void blackvertiwintest1() {
+		game = new Game();
+		game.setPiece(one, one);
+		game.setPiece(one, five);
+		game.setPiece(one, two);
+		game.setPiece(one, five);
+		game.setPiece(two, two);
+		game.setPiece(one, five);
+		game.setPiece(three, two);
+		b = game.getBoard();
+		assertTrue(game.gameStatus() == 0);
 	}
 	
 	/**
@@ -266,6 +297,7 @@ public class connectfourtests {
 		b = game.getBoard();
 		assertTrue(game.gameStatus() == 1);
 	}
+	
 	
 	/**
 	 * 
@@ -392,6 +424,20 @@ public class connectfourtests {
 		game.setPiece(zero, one);
 		game.setPiece(two, five);
 		assertTrue(game.getVerticalConnects() == five);
+	}
+	
+	/**
+	 * 
+	 */
+	@Test
+	public final void aiVTest3() {
+		game = new Game();
+		game.setPiece(two, five);
+		game.setPiece(zero, one);
+		game.setPiece(two, five);
+		game.setPiece(zero, one);
+		game.setPiece(two, five);
+		assertTrue(game.isValidMove() == five);
 	}
 	
 	/**
