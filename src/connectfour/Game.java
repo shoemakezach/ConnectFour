@@ -11,7 +11,7 @@ import java.util.concurrent.ThreadLocalRandom;
 public class Game {
 
 	/** a certain cell on the board. */
-	public Cell[][] board;
+	private Cell[][] board;
 	/** A counter for whos turn it is. */
 	private int playerTurn = 1;
 	/** A constant for a number.  */
