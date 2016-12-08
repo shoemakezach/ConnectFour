@@ -1,3 +1,4 @@
+
 package connectfour;
 
 import java.util.concurrent.ThreadLocalRandom;
@@ -77,6 +78,9 @@ public class Game {
 	 */
 	private static final int CONNECT_FOUR_ROWS = 6;
 
+	/** 
+	 * 
+	 */
 	public GameType type;
 	public LevelDifficulty level;
 
@@ -152,7 +156,7 @@ public class Game {
 			}
 		}
 		if (type == GameType.OnePlayer) {
-			if (level == LevelDifficulty.Easy) {
+//			if (level == LevelDifficulty.Easy) {
 				if (playerTurn == 1) {
 					if (board[r][c].isBlack() || board[r][c].isRed()) { // throw
 																		// error
@@ -183,55 +187,55 @@ public class Game {
 						}
 					}
 				}
-			}
-			if (level == LevelDifficulty.Medium) {
-				if (board[r][c].isBlack() || board[r][c].isRed()) { // throw
-																	// error
-																	// here
-					throw new NullPointerException();
-				} else if (playerTurn == 1) {
-					for (int i = r; i < SIX; i++) {
-						if (i == FIVE || board[i + 1][c].isRed() || board[i + 1][c].isBlack()) {
-							board[i][c].setRed(true);
-							changeTurn();
-							return i;
-						}
-					}
-				} else if (playerTurn == 2) {
-					for (int i = r; i < SIX; i++) {
-						if (i == FIVE || board[i + 1][c].isRed() || board[i + 1][c].isBlack()) {
-							board[i][c].setBlack(true);
-							// add is valid move here
-							changeTurn();
-							return i;
-						}
-					}
-				}
-			}
-			if (level == LevelDifficulty.Hard) {
-				if (board[r][c].isBlack() || board[r][c].isRed()) { // throw
-																	// error
-																	// here
-					throw new NullPointerException();
-				} else if (playerTurn == 1) {
-					for (int i = r; i < SIX; i++) {
-						if (i == FIVE || board[i + 1][c].isRed() || board[i + 1][c].isBlack()) {
-							board[i][c].setRed(true);
-							changeTurn();
-							return i;
-						}
-					}
-				} else if (playerTurn == 2) {
-					for (int i = r; i < SIX; i++) {
-						if (i == FIVE || board[i + 1][c].isRed() || board[i + 1][c].isBlack()) {
-							board[i][c].setBlack(true);
-							// add is valid move here
-							changeTurn();
-							return i;
-						}
-					}
-				}
-			}
+//			}
+//			if (level == LevelDifficulty.Medium) {
+//				if (board[r][c].isBlack() || board[r][c].isRed()) { // throw
+//																	// error
+//																	// here
+//					throw new NullPointerException();
+//				} else if (playerTurn == 1) {
+//					for (int i = r; i < SIX; i++) {
+//						if (i == FIVE || board[i + 1][c].isRed() || board[i + 1][c].isBlack()) {
+//							board[i][c].setRed(true);
+//							changeTurn();
+//							return i;
+//						}
+//					}
+//				} else if (playerTurn == 2) {
+//					for (int i = r; i < SIX; i++) {
+//						if (i == FIVE || board[i + 1][c].isRed() || board[i + 1][c].isBlack()) {
+//							board[i][c].setBlack(true);
+//							// add is valid move here
+//							changeTurn();
+//							return i;
+//						}
+//					}
+//				}
+//			}
+//			if (level == LevelDifficulty.Hard) {
+//				if (board[r][c].isBlack() || board[r][c].isRed()) { // throw
+//																	// error
+//																	// here
+//					throw new NullPointerException();
+//				} else if (playerTurn == 1) {
+//					for (int i = r; i < SIX; i++) {
+//						if (i == FIVE || board[i + 1][c].isRed() || board[i + 1][c].isBlack()) {
+//							board[i][c].setRed(true);
+//							changeTurn();
+//							return i;
+//						}
+//					}
+//				} else if (playerTurn == 2) {
+//					for (int i = r; i < SIX; i++) {
+//						if (i == FIVE || board[i + 1][c].isRed() || board[i + 1][c].isBlack()) {
+//							board[i][c].setBlack(true);
+//							// add is valid move here
+//							changeTurn();
+//							return i;
+//						}
+//					}
+//				}
+//			}
 
 		}
 		return -1;
