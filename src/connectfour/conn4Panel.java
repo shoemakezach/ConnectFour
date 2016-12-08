@@ -626,75 +626,75 @@ public class conn4Panel extends JPanel {
 		 * @param rownum is the row the piece should end up in
 		 * @param colnum is the column the piece should 
 		 */
-		public void animation(final int rownum, final int colnum) {
-			if (rownum == -1) {
-				System.out.println("Not Valid Move");
-				return;
-			}
-			if (game.getPlayerTurn() == 1) {
-				for (int i = 0; i <= rownum; i++) {
-					if (i != 0) {
-						game.board[i - 1][colnum].setBlack(false);
-					}
-					game.board[i][colnum].setBlack(true);
-					System.out.println("1image set at: " + i + ", " + colnum);
-					try {
-						Thread.sleep(FIFTY);
-
-					} catch (InterruptedException e) {
-						e.printStackTrace();
-					}
-				}
-			}
-			if (game.getPlayerTurn() == 2) {
-				for (int i = 0; i < rownum; i++) {
-					if (i != 0) {
-						game.board[i][colnum].setRed(true);
-
-						if (game.getBoard()[i][colnum].isRed()) {
-
-							if ("red" == (String) color.getSelectedItem()) {
-								setRed(rED);
-								setRED(rED);
-							}
-							if ("green" == (String) color.getSelectedItem()) {
-								setRed(gREEN);
-								setRED(gREEN); 
-							}
-							if ("pink" == (String) color.getSelectedItem()) {
-								setRed(pINK);
-								setRED(pINK); 
-
-							}
-							if ("orange" == (String) color.getSelectedItem()) {
-								setRed(oRANGE);
-								setRED(oRANGE); 
-
-							}
-							if ("blue" == (String) color.getSelectedItem()) {
-								setRed(bLUE);
-								setRED(bLUE); 
-
-							}
-							if ("star" == (String) color.getSelectedItem()) {
-								setRed(sTAR);
-								setRED(sTAR); 
-
-							}
-						}
-						displayBoard();
-						game.board[i][colnum].setRed(false);
-						System.out.println("2image set at: " + i 
-								+ ", " + colnum);
-					}
-					try {
-						Thread.sleep(FIFTY);
-					} catch (InterruptedException e) {
-						e.printStackTrace();
-					}
-				}
-			}
-
-		}
+//		public void animation(final int rownum, final int colnum) {
+//			if (rownum == -1) {
+//				System.out.println("Not Valid Move");
+//				return;
+//			}
+//			if (game.getPlayerTurn() == 1) {
+//				for (int i = 0; i <= rownum; i++) {
+//					if (i != 0) {
+//						game.board[i - 1][colnum].setBlack(false);
+//					}
+//					game.board[i][colnum].setBlack(true);
+//					System.out.println("1image set at: " + i + ", " + colnum);
+//					try {
+//						Thread.sleep(FIFTY);
+//
+//					} catch (InterruptedException e) {
+//						e.printStackTrace();
+//					}
+//				}
+//			}
+//			if (game.getPlayerTurn() == 2) {
+//				for (int i = 0; i < rownum; i++) {
+//					if (i != 0) {
+//						game.board[i][colnum].setRed(true);
+//
+//						if (game.getBoard()[i][colnum].isRed()) {
+//
+//							if ("red" == (String) color.getSelectedItem()) {
+//								setRed(rED);
+//								setRED(rED);
+//							}
+//							if ("green" == (String) color.getSelectedItem()) {
+//								setRed(gREEN);
+//								setRED(gREEN); 
+//							}
+//							if ("pink" == (String) color.getSelectedItem()) {
+//								setRed(pINK);
+//								setRED(pINK); 
+//
+//							}
+//							if ("orange" == (String) color.getSelectedItem()) {
+//								setRed(oRANGE);
+//								setRED(oRANGE); 
+//
+//							}
+//							if ("blue" == (String) color.getSelectedItem()) {
+//								setRed(bLUE);
+//								setRED(bLUE); 
+//
+//							}
+//							if ("star" == (String) color.getSelectedItem()) {
+//								setRed(sTAR);
+//								setRED(sTAR); 
+//
+//							}
+//						}
+//						displayBoard();
+//						game.board[i][colnum].setRed(false);
+//						System.out.println("2image set at: " + i 
+//								+ ", " + colnum);
+//					}
+//					try {
+//						Thread.sleep(FIFTY);
+//					} catch (InterruptedException e) {
+//						e.printStackTrace();
+//					}
+//				}
+//			}
+//
+//		}
 	}
 }

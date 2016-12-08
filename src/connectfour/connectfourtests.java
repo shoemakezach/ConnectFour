@@ -142,6 +142,7 @@ public class connectfourtests {
 		game.setPiece(one, four);
 		b = game.getBoard();
 		assertTrue(b[five][four].isBlack());
+		assertTrue(game.gameStatus() == 0);
 	}
 	
 	/**
@@ -351,6 +352,25 @@ public class connectfourtests {
 	/**
 	 * 
 	 */
+	@Test(expected = IndexOutOfBoundsException.class)
+	public final void setPieceFail1() {
+		game = new Game();
+		b = game.getBoard();
+		game.setPiece(one, zero);
+		game.setPiece(one, zero);
+		game.setPiece(one, zero);
+		game.setPiece(one, zero);
+		game.setPiece(one, zero);
+		game.setPiece(one, zero);
+		game.setPiece(one, zero);
+		game.setPiece(one, zero);
+
+	}
+
+	
+	/**
+	 * 
+	 */
 	@Test
 	public final void setPieceBlack() {
 		game = new Game();
@@ -358,6 +378,50 @@ public class connectfourtests {
 		game.setPiece(zero, 1);
 		b = game.getBoard();
 		assertTrue(b[five][one].isBlack());
+	}
+	
+	/**
+	 * 
+	 */
+	@Test
+	public final void aiVTest() {
+		game = new Game();
+		game.setPiece(two, five);
+		game.setPiece(zero, one);
+		game.setPiece(two, five);
+		game.setPiece(zero, one);
+		game.setPiece(two, five);
+		assertTrue(game.getVerticalConnects() == five);
+	}
+	
+	/**
+	 * 
+	 * 
+	 */
+	@Test
+	public final void aiVTest1() {
+		game = new Game();
+		game.setPiece(two, five);
+		game.setPiece(zero, one);
+		game.setPiece(two, five);
+		game.setPiece(zero, one);
+		game.setPiece(two, four);
+		assertTrue(game.getVerticalConnects() == 0);
+	}
+	
+	/**
+	 * 
+	 */
+	@Test
+	public final void aiVTest2() {
+		game = new Game();
+		game.setPiece(two, five);
+		game.setPiece(zero, one);
+		game.setPiece(two, five);
+		game.setPiece(zero, one);
+		game.setPiece(two, five);
+		game.setPiece(two, five);
+		assertTrue(game.getVerticalConnects() == 0);
 	}
 	
 	/**
@@ -441,6 +505,17 @@ public class connectfourtests {
 		game.setblack(false);
 		assertTrue(game.isBlack() == false);
 	}
+	
+	@Test
+	public final void testGameType() {
+		game = new Game();
+		assertTrue(game.getType() == GameType.OnePlayer);
+	}
 
+	@Test
+	public final void testLevelType() {
+		game = new Game();
+		assertTrue(game.getLevel() == LevelDifficulty.Easy);
+	}
 
 }
