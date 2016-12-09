@@ -423,7 +423,7 @@ public class Conn4Panel extends JPanel {
 	private void displayBoard() {
 
 		redWin.setText(getName() + " Wins: " + game.getRedWin());
-		blackWin.setText(" Player 2 Wins: " + game.getBlackWin());
+		blackWin.setText(" Player 2 Wins: " + (game.getBlackWin()));
 
 		for (int r = 0; r < SIX; r++) {
 			for (int c = 0; c < SEVEN; c++) {
@@ -589,14 +589,16 @@ public class Conn4Panel extends JPanel {
 
 			displayBoard();
 
-			if (game.gameStatus() == 1) {
+			int temp = game.gameStatus();
+			
+			if (temp == 1) {
 				JOptionPane.showMessageDialog(null, getName() + " Wins!"
 						+ "\n The game will reset");
 				game.newGame();
 				displayBoard();
 				return;
 			}
-			if (game.gameStatus() == 2) {
+			if (temp == 2) {
 				JOptionPane.showMessageDialog(null, "Player 2 Wins!"
 						+ "\n The game will reset");
 				game.newGame();
@@ -679,41 +681,7 @@ public class Conn4Panel extends JPanel {
 					if (i != 0) {
 					//	game.board[i][colnum].setRed(true);
 
-						if (game.getBoard()[i][colnum].isRed()) {
-
-							if ("red" == (String) color.getSelectedItem()) {
-								setRed(rED);
-								setRED(rED);
-							}
-							if ("green" == (String) color.getSelectedItem()) {
-								setRed(gREEN);
-								setRED(gREEN); 
-							}
-							if ("pink" == (String) color.getSelectedItem()) {
-								setRed(pINK);
-								setRED(pINK); 
-
-							}
-							if ("orange" == (String) color.getSelectedItem()) {
-								setRed(oRANGE);
-								setRED(oRANGE); 
-
-							}
-							if ("blue" == (String) color.getSelectedItem()) {
-								setRed(bLUE);
-								setRED(bLUE); 
-
-							}
-							if ("star" == (String) color.getSelectedItem()) {
-								setRed(sTAR);
-								setRED(sTAR); 
-
-							}
-						}
-						displayBoard();
-						//game.board[i][colnum].setRed(false);
-						System.out.println("2image set at: " + i 
-								+ ", " + colnum);
+			
 					}
 					try {
 						Thread.sleep(FIFTY);
